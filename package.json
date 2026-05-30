@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "figma:pull": "node scripts/figma-pull.mjs --file NN6Wp4Hgsug3OKhiQdL27d"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

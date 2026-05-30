@@ -127,6 +127,11 @@ references a Figma node, never skip to coding:
 **Code ↔ design mapping:** use Code Connect (`get_code_connect_map`, `add_code_connect_map`) to link
 `components/ui/*` to their Figma components so design-to-code stays consistent.
 
+**Pull colors via REST API (no MCP):** `npm run figma:pull -- <nodeId>` runs
+`scripts/figma-pull.mjs` — it reads the PAT from `.mcp.json`, fetches the node from
+`api.figma.com`, and maps each Figma color to the nearest project token in `app/globals.css`
+(perceptual OKLab ΔE). Adapted from `plugin87/figma-rest-api` (MIT) for this project's HSL tokens.
+
 ## Do / Don't
 
 ### Do
@@ -158,4 +163,6 @@ npx shadcn@latest info --json                        # project context (run firs
 npx shadcn@latest search <query>                     # find a component
 npx shadcn@latest add <component>                    # install a component
 npx shadcn@latest add <component> --dry-run --diff   # preview an update before applying
+
+npm run figma:pull -- <nodeId>                       # pull Figma colors → map to our HSL tokens
 ```
