@@ -29,7 +29,11 @@ export default function Home() {
         <p className="leading-7 text-muted-foreground">
           Pick a component from the sidebar, or browse the {componentDocs.length} documented
           components below. Toggle between the <strong>Brand</strong> and{" "}
-          <strong>Neutral</strong> themes — and light / dark — from the top-right controls.
+          <strong>Neutral</strong> themes — and light / dark — from the top-right controls. See the{" "}
+          <Link href="/tokens" className="font-medium text-foreground underline underline-offset-4">
+            Colors
+          </Link>{" "}
+          page for the design tokens behind it all.
         </p>
       </div>
 

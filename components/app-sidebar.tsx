@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Book, BookOpen, Component } from "lucide-react"
+import { Book, BookOpen, Component, Palette } from "lucide-react"
 
 import { componentDocs } from "@/lib/docs"
 import {
@@ -43,6 +43,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Link href="/">
                     <BookOpen className="size-4" />
                     <span>Introduction</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === "/tokens"}>
+                  <Link href="/tokens">
+                    <Palette className="size-4" />
+                    <span>Colors</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
