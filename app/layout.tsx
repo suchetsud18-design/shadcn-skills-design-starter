@@ -4,6 +4,8 @@ import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Providers } from "./providers";
+import { ThemeControls } from "@/components/theme-controls";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,21 +34,29 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <TooltipProvider>
-          <SidebarProvider>
-            <AppSidebar />
-            <div className="flex flex-1 flex-col overflow-hidden">
-              <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-muted/40 px-6">
-                <SidebarTrigger />
-              </header>
-              <main className="flex-1 overflow-auto bg-background p-6 lg:p-10">
-                <div className="mx-auto max-w-4xl">
-                  {children}
-                </div>
-              </main>
-            </div>
-          </SidebarProvider>
-        </TooltipProvider>
+        <Providers>
+          <TooltipProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <div className="flex flex-1 flex-col overflow-hidden">
+                <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-muted/40 px-6">
+                  <SidebarTrigger />
+                  <span className="text-sm font-medium text-muted-foreground">
+                    Component Documentation
+                  </span>
+                  <div className="ml-auto">
+                    <ThemeControls />
+                  </div>
+                </header>
+                <main className="flex-1 overflow-auto bg-background p-6 lg:p-10">
+                  <div className="mx-auto max-w-4xl">
+                    {children}
+                  </div>
+                </main>
+              </div>
+            </SidebarProvider>
+          </TooltipProvider>
+        </Providers>
       </body>
     </html>
   );

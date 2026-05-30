@@ -1,86 +1,53 @@
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+
+import { componentDocs, intro } from "@/lib/docs"
+import { Separator } from "@/components/ui/separator"
+import { Badge } from "@/components/ui/badge"
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 export default function Home() {
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-2">
-          Introduction
+      <div className="space-y-3">
+        <Badge variant="secondary">shadcn/ui · Tailwind v4</Badge>
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          {intro.title}
         </h1>
-        <p className="text-xl text-muted-foreground">
-          Beautifully designed components that you can copy and paste into your apps.
-        </p>
+        <p className="max-w-2xl text-xl text-muted-foreground">{intro.description}</p>
       </div>
 
       <Separator />
 
-      <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-          Getting Started
-        </h2>
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-          This is a sample documentation page built with Next.js and shadcn/ui. 
-          The sidebar on the left lets you navigate through different components and features easily.
-        </p>
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-          You can use this layout as a foundation for building comprehensive documentation sites,
-          knowledge bases, or complex applications that require a structured navigation menu.
+      <div className="space-y-2">
+        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">Getting Started</h2>
+        <p className="leading-7 text-muted-foreground">
+          Pick a component from the sidebar, or browse the {componentDocs.length} documented
+          components below. Toggle between the <strong>Brand</strong> and{" "}
+          <strong>Neutral</strong> themes — and light / dark — from the top-right controls.
         </p>
       </div>
 
-      <div className="space-y-4 pt-4">
-        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-          Interactive Examples
-        </h3>
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-          Here is an example of the <code>Button</code> component in action:
-        </p>
-        <div className="flex flex-wrap items-center gap-4 rounded-md border p-6 bg-card text-card-foreground">
-          <Button variant="default">Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
-        </div>
-      </div>
-
-      <div className="space-y-4 pt-4">
-        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-          Accordion (from Figma)
-        </h3>
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-          This is the Accordion component based on the Figma node you provided.
-        </p>
-        <div className="rounded-md border p-6 bg-card text-card-foreground">
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It comes with default styles that matches the other components' aesthetic.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Is it animated?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It's animated by default, but you can disable it if you prefer.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {componentDocs.map((doc) => (
+          <Link key={doc.slug} href={`/components/${doc.slug}`} className="group">
+            <Card className="h-full transition-colors hover:border-primary/50 hover:bg-accent/40">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between text-base">
+                  {doc.title}
+                  <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" />
+                </CardTitle>
+                <CardDescription className="line-clamp-2">{doc.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+        ))}
       </div>
     </div>
-  );
+  )
 }
