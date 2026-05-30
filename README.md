@@ -4,7 +4,7 @@
 
 A **Next.js + shadcn/ui + Tailwind v4** starter wired with a **Claude Code skill** and a
 full **design-token spec** — so AI agents build UI that stays faithful to the design system
-and to Figma.
+and to Figma. Ships with a **warm brand theme**: cream + charcoal surfaces, orange primary.
 
 <p>
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white">
@@ -12,6 +12,7 @@ and to Figma.
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white">
   <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?logo=tailwindcss&logoColor=white">
   <img alt="shadcn/ui" src="https://img.shields.io/badge/shadcn%2Fui-new--york-111827">
+  <img alt="Theme" src="https://img.shields.io/badge/theme-%23d97757-d97757">
 </p>
 
 </div>
@@ -27,8 +28,8 @@ automatically, so generated UI is consistent and Figma-faithful out of the box.
 
 | | |
 |---|---|
-| 🎨 **Design tokens** | 1,788 variables across 16 collections — [`DESIGN.md`](./.claude/skills/shadcn-ui-design/references/DESIGN.md) |
-| 🧩 **35 semantic tokens** | shadcn/ui tokens with full light + dark parity |
+| 🎨 **Brand theme** | cream `#faf9f5` + charcoal `#141413` + orange `#d97757` primary |
+| 🧩 **35 semantic tokens** | full light + dark parity, defined in [`DESIGN.md`](./.claude/skills/shadcn-ui-design/references/DESIGN.md) §2 (with a 1,788-variable reference palette in §3–§12) |
 | 🤖 **Claude Code skill** | auto-discovered `shadcn-ui-design` skill drives every UI change |
 | 🖼️ **Figma → code** | Figma Dev Mode MCP workflow: read the node, map to tokens, build |
 | ⚡ **Modern stack** | Next.js 16 (App Router, Turbopack), React 19, Tailwind v4 |
@@ -38,8 +39,8 @@ automatically, so generated UI is consistent and Figma-faithful out of the box.
 ## 🛠️ Tech stack
 
 - **Framework** — Next.js 16 (App Router, Turbopack) · React 19 · TypeScript 5
-- **Styling** — Tailwind CSS v4 (CSS-first, `@theme inline`, OKLCH/HSL tokens, light + dark)
-- **UI** — shadcn/ui (style `new-york`, base `neutral`, CSS variables, lucide icons)
+- **Styling** — Tailwind CSS v4 (CSS-first, `@theme inline`, HSL tokens, light + dark)
+- **UI** — shadcn/ui (style `new-york`, CSS variables, lucide icons) with custom brand tokens
 - **Theming** — `next-themes` (class-based dark mode) · `clsx` + `tailwind-merge` via `cn()`
 - **Design source** — Figma (Dev Mode MCP)
 - **Tooling** — ESLint · npm
@@ -52,15 +53,17 @@ automatically, so generated UI is consistent and Figma-faithful out of the box.
 .
 ├── app/                              # Next.js App Router (layout, pages, globals.css)
 ├── public/                           # static assets
-├── components.json                   # shadcn config        (after Setup)
-├── lib/utils.ts                      # cn() helper          (after Setup)
+├── components.json                   # shadcn config
+├── lib/utils.ts                      # cn() helper
 ├── CLAUDE.md                         # instructions loaded into Claude on every session
 └── .claude/
     └── skills/shadcn-ui-design/      # the design-system skill (authority on tokens)
         ├── SKILL.md                  # how to build UI in this project
         ├── references/DESIGN.md      # full token + component spec (source of truth)
-        ├── assets/                   # static assets the skill ships
-        └── scripts/                  # helper scripts
+        └── assets/                   # scaffold templates (cp into the app)
+            ├── globals.css           # brand tokens — mirrors app/globals.css
+            ├── components.json
+            └── lib/utils.ts
 ```
 
 ---
@@ -77,23 +80,23 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) and edit `app/page.tsx` — it hot-reloads.
 
-### Wire up the design system (one-time)
+### Design system
 
-The Next.js app is scaffolded; finish wiring shadcn/ui and the tokens:
+The shadcn config (`components.json`, `lib/utils.ts`) and the brand tokens in `app/globals.css`
+are already in place. To re-apply the tokens (or after a fresh `shadcn init`), copy the templates
+from the skill:
 
 ```bash
-# 1. Init shadcn — choose style: new-york, base color: neutral, CSS variables: yes
-npx shadcn@latest init
+cp .claude/skills/shadcn-ui-design/assets/globals.css     app/globals.css
+cp .claude/skills/shadcn-ui-design/assets/components.json  components.json
+cp .claude/skills/shadcn-ui-design/assets/lib/utils.ts     lib/utils.ts
 
-# 2. Dark mode
-npm install next-themes
-#    then wrap app/layout.tsx in <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-
-# 3. Copy the design tokens from DESIGN.md §2 into app/globals.css (light + dark)
-
-# 4. Add components as you need them
+# add components as you need them
 npx shadcn@latest add button card input
 ```
+
+For dark mode, wrap `app/layout.tsx` in a `next-themes` `ThemeProvider`
+(`attribute="class"`, `defaultTheme="system"`, `enableSystem`).
 
 ---
 
@@ -108,12 +111,12 @@ moment you touch UI (shadcn components, Tailwind classes, or Figma nodes).
 - ✅ Semantic tokens only — `bg-primary`, `text-muted-foreground` · never raw colors
 - ✅ `gap-*` not `space-x/y-*` · `size-10` not `w-10 h-10` · `cn()` for conditional classes
 - ✅ Components via the CLI (`npx shadcn@latest add`) — never hand-fork `components/ui/*`
-- ✅ Tokens edited in `app/globals.css` only — no new CSS files
+- ✅ Tokens kept in sync between `DESIGN.md` §2 and `app/globals.css` — no new CSS files
 - ✅ Build exactly what Figma shows — no invented states, no dropped details
 
 ### Figma → code workflow
 
-1. **Read** the selected node with the Figma Dev Mode MCP (`get_code`, `get_variable_defs`, `get_image`).
+1. **Read** the selected node with the Figma Dev Mode MCP (`get_design_context`, `get_screenshot`, `get_metadata`).
 2. **Map** every Figma variable to a token in `DESIGN.md`. No matching token → stop and ask.
 3. **Build** from shadcn primitives via the CLI, then compose.
 4. **Verify** fidelity against the Figma image.
