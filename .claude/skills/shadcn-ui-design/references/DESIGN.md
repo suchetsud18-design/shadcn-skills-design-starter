@@ -1,6 +1,6 @@
 # DESIGN SYSTEM SPEC
 > shadcn/ui + Tailwind CSS v4 + Next.js App Router
-> Theme: Warm brand — cream + charcoal surfaces, orange (#d97757) primary | Light + Dark mode
+> Themes: Brand (cream + charcoal + orange, default) · Neutral (`.theme-neutral`) | Light + Dark mode
 >
 > **Source of truth for:** tokens, spacing, typography, component rules
 > For usage patterns (code patterns, CLI) → [`SKILL.md`](./SKILL.md)
@@ -213,6 +213,102 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 ```
+
+### Alternate theme — Neutral
+
+A second, selectable theme. The **brand** theme (cream + charcoal + orange) is the default
+in `:root` / `.dark`. Adding the class **`theme-neutral`** on `<html>` switches the same 35
+tokens to a clean **neutral** palette (white / charcoal, neutral primary, blue charts).
+Both still respect `.dark`.
+
+| Activate | Class on `<html>` |
+|---|---|
+| Brand light (default) | _(none)_ |
+| Brand dark | `dark` |
+| Neutral light | `theme-neutral` |
+| Neutral dark | `theme-neutral dark` |
+
+```css
+/* globals.css — appended after the brand :root / .dark blocks */
+.theme-neutral {
+  --background: hsl(0 0% 100%);  /* white */
+  --foreground: hsl(0 0% 4%);  /* neutral/950 */
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(0 0% 4%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(0 0% 4%);
+  --primary: hsl(0 0% 9%);  /* neutral/900 */
+  --primary-foreground: hsl(0 0% 98%);  /* neutral/50 */
+  --secondary: hsl(0 0% 96%);  /* neutral/100 */
+  --secondary-foreground: hsl(0 0% 4%);
+  --muted: hsl(0 0% 96%);
+  --muted-foreground: hsl(0 0% 45%);  /* neutral/500 */
+  --accent: hsl(0 0% 96%);
+  --accent-foreground: hsl(0 0% 9%);
+  --destructive: hsl(0 72% 51%);  /* red/600 */
+  --border: hsl(0 0% 90%);  /* neutral/200 */
+  --input: hsl(0 0% 90%);
+  --ring: hsl(0 0% 45%);  /* neutral/500 */
+  --chart-1: hsl(206 82% 65%);  /* blue/8 */
+  --chart-2: hsl(206 100% 50%);  /* blue/9 */
+  --chart-3: hsl(207 96% 48%);  /* blue/10 */
+  --chart-4: hsl(208 88% 43%);  /* blue/11 */
+  --chart-5: hsl(216 71% 23%);  /* blue/12 */
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(0 0% 4%);
+  --sidebar-primary: hsl(0 0% 9%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(0 0% 96%);
+  --sidebar-accent-foreground: hsl(0 0% 9%);
+  --sidebar-border: hsl(0 0% 90%);
+  --sidebar-ring: hsl(0 0% 45%);
+  --background-color: hsl(0 0% 0% / 30%);
+  --semantic-background: hsl(25 5% 45%);  /* stone/500 */
+  --semantic-border: hsl(24 5% 64%);  /* stone/400 */
+  --semantic-foreground: hsl(0 0% 100%);
+}
+
+.theme-neutral.dark {
+  --background: hsl(0 0% 4%);  /* neutral/950 */
+  --foreground: hsl(0 0% 98%);  /* neutral/50 */
+  --card: hsl(0 0% 4%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(0 0% 4%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary: hsl(0 0% 98%);  /* neutral/50 */
+  --primary-foreground: hsl(0 0% 9%);  /* neutral/900 */
+  --secondary: hsl(0 0% 15%);  /* neutral/800 */
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(0 0% 15%);
+  --muted-foreground: hsl(0 0% 64%);  /* neutral/400 */
+  --accent: hsl(0 0% 15%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(0 63% 31%);  /* red/900 */
+  --border: hsl(0 0% 15%);
+  --input: hsl(0 0% 15%);
+  --ring: hsl(0 0% 83%);  /* neutral/300 */
+  --chart-1: hsl(206 82% 65%);
+  --chart-2: hsl(206 100% 50%);
+  --chart-3: hsl(207 96% 48%);
+  --chart-4: hsl(208 88% 43%);
+  --chart-5: hsl(216 71% 23%);
+  --sidebar: hsl(0 0% 9%);
+  --sidebar-foreground: hsl(0 0% 96%);
+  --sidebar-primary: hsl(0 0% 98%);
+  --sidebar-primary-foreground: hsl(0 0% 9%);
+  --sidebar-accent: hsl(0 0% 15%);
+  --sidebar-accent-foreground: hsl(0 0% 96%);
+  --sidebar-border: hsl(0 0% 15%);
+  --sidebar-ring: hsl(0 0% 83%);
+  --background-color: hsl(0 0% 0% / 50%);
+  --semantic-background: hsl(25 5% 45%);
+  --semantic-border: hsl(24 5% 64%);
+  --semantic-foreground: hsl(0 0% 100%);
+}
+```
+
+> The `@theme inline` mapping above is theme-agnostic — it maps `--color-*` to `var(--token)`,
+> so it covers **both** themes automatically. No new entries needed.
 
 ---
 

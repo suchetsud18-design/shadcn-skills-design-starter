@@ -8,8 +8,9 @@ A **Next.js (App Router) web app** whose UI is built with **shadcn/ui + Tailwind
 driven by a design system whose tokens live in the `shadcn-ui-design` skill
 (`.claude/skills/shadcn-ui-design/`), which Claude Code auto-discovers.
 
-The theme is a **warm brand** — cream (`#faf9f5`) + charcoal (`#141413`) surfaces with an
-**orange (`#d97757`) primary**, plus blue/green accents. Full light + dark support.
+The default theme is a **warm brand** — cream (`#faf9f5`) + charcoal (`#141413`) surfaces with
+an **orange (`#d97757`) primary**, plus blue/green accents. A second **Neutral** theme is
+available via the `theme-neutral` class on `<html>`. Both support light + dark.
 
 ### Current status
 
@@ -95,10 +96,19 @@ Core rules (full detail in `SKILL.md`):
 
 ## Tokens
 
-The 35 semantic tokens are defined in **`DESIGN.md` §2** (light + dark) and mirrored verbatim in
+The 35 semantic tokens are defined in **`DESIGN.md` §2** and mirrored verbatim in
 **`app/globals.css`** and **`assets/globals.css`**. They are the source of truth — there is no
 auto-generator. **To change a token, edit `DESIGN.md` §2 and both `globals.css` files together**
 so they stay in sync. Sections §3–§12 of `DESIGN.md` are the supporting reference palette.
+
+Two themes share those 35 token names — toggle via the `<html>` class:
+
+| `<html>` class | Theme |
+|---|---|
+| _(none)_ | Brand light (default) |
+| `dark` | Brand dark |
+| `theme-neutral` | Neutral light |
+| `theme-neutral dark` | Neutral dark |
 
 ## Figma integration (MCP)
 
