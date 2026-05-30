@@ -1,11 +1,12 @@
 # DESIGN SYSTEM SPEC
 > shadcn/ui + Tailwind CSS v4 + Next.js App Router
-> Theme: Neutral | Light + Dark mode
+> Theme: Warm brand — cream + charcoal surfaces, orange (#d97757) primary | Light + Dark mode
 >
 > **Source of truth for:** tokens, spacing, typography, component rules
 > For usage patterns (code patterns, CLI) → [`SKILL.md`](./SKILL.md)
 >
-> **Token source:** `variables-export.json` — 1,788 variables across 16 collections
+> **Tokens:** §2 defines the 35 semantic brand tokens (light + dark) the app consumes;
+> §3–§12 document the supporting reference palette (1,788 variables across 16 collections).
 
 ---
 
@@ -23,87 +24,87 @@
 
 ## 2. Shadcn/ui Semantic Tokens (35 variables)
 
-> Light mode: `variables-export.json → Shadcn/ui` collection
-> Dark mode: derived using colors from token file (tw/colors, rdx/colors) per shadcn Neutral docs
+> The 35 semantic tokens for this project's **brand theme** — cream + charcoal surfaces with an
+> orange (`#d97757`) primary. These are the source of truth; edit values here **and** in
+> `app/globals.css` / `assets/globals.css` together (kept in sync by hand).
 
 ```css
 /* globals.css — Light mode */
 :root {
-  --background: hsl(0 0% 100%);  /* white */
-  --foreground: hsl(0 0% 4%);  /* neutral/950 */
-  --card: hsl(0 0% 100%);  /* white */
-  --card-foreground: hsl(0 0% 4%);  /* neutral/950 */
-  --popover: hsl(0 0% 100%);  /* white */
-  --popover-foreground: hsl(0 0% 4%);  /* neutral/950 */
-  --primary: hsl(0 0% 9%);  /* neutral/900 */
-  --primary-foreground: hsl(0 0% 98%);  /* neutral/50 */
-  --secondary: hsl(0 0% 96%);  /* neutral/100 */
-  --secondary-foreground: hsl(0 0% 4%);  /* neutral/950 */
-  --muted: hsl(0 0% 96%);  /* neutral/100 */
-  --muted-foreground: hsl(0 0% 45%);  /* neutral/500 */
-  --accent: hsl(0 0% 96%);  /* neutral/100 */
-  --accent-foreground: hsl(0 0% 9%);  /* neutral/900 */
-  --destructive: hsl(0 72% 51%);  /* red/600 */
-  --border: hsl(0 0% 90%);  /* neutral/200 */
-  --input: hsl(0 0% 90%);  /* neutral/200 */
-  --ring: hsl(0 0% 45%);  /* neutral/500 */
-  --chart-1: hsl(206 82% 65%);  /* blue/8 */
-  --chart-2: hsl(206 100% 50%);  /* blue/9 */
-  --chart-3: hsl(207 96% 48%);  /* blue/10 */
-  --chart-4: hsl(208 88% 43%);  /* blue/11 */
-  --chart-5: hsl(216 71% 23%);  /* blue/12 */
-  --sidebar: hsl(0 0% 98%);  /* neutral/50 */
-  --sidebar-foreground: hsl(0 0% 4%);  /* neutral/950 */
-  --sidebar-primary: hsl(0 0% 9%);  /* neutral/900 */
-  --sidebar-primary-foreground: hsl(0 0% 98%);  /* neutral/50 */
-  --sidebar-accent: hsl(0 0% 96%);  /* neutral/100 */
-  --sidebar-accent-foreground: hsl(0 0% 9%);  /* neutral/900 */
-  --sidebar-border: hsl(0 0% 90%);  /* neutral/200 */
-  --sidebar-ring: hsl(0 0% 45%);  /* neutral/500 */
-  --background-color: hsl(0 0% 0% / 30%);  /* black/5 */
-  --semantic-background: hsl(25 5% 45%);  /* stone/500 */
-  --semantic-border: hsl(24 5% 64%);  /* stone/400 */
-  --semantic-foreground: hsl(0 0% 100%);  /* white */
-
   --radius: 0.5rem;
+  --background: hsl(48 33% 97%);  /* cream #faf9f5 */
+  --foreground: hsl(60 3% 8%);  /* charcoal #141413 */
+  --card: hsl(48 40% 99%);  /* warm white */
+  --card-foreground: hsl(60 3% 8%);  /* charcoal */
+  --popover: hsl(48 40% 99%);  /* warm white */
+  --popover-foreground: hsl(60 3% 8%);  /* charcoal */
+  --primary: hsl(15 63% 60%);  /* orange #d97757 */
+  --primary-foreground: hsl(60 3% 8%);  /* charcoal (a11y 6.2:1) */
+  --secondary: hsl(50 21% 89%);  /* light gray #e8e6dc */
+  --secondary-foreground: hsl(60 3% 8%);  /* charcoal */
+  --muted: hsl(50 21% 89%);  /* light gray #e8e6dc */
+  --muted-foreground: hsl(48 6% 40%);  /* warm gray */
+  --accent: hsl(50 21% 89%);  /* light gray #e8e6dc */
+  --accent-foreground: hsl(60 3% 8%);  /* charcoal */
+  --destructive: hsl(0 72% 51%);  /* red/600 */
+  --border: hsl(48 16% 84%);  /* warm gray/200 */
+  --input: hsl(48 16% 84%);  /* warm gray/200 */
+  --ring: hsl(15 63% 60%);  /* orange */
+  --chart-1: hsl(15 63% 60%);  /* orange #d97757 */
+  --chart-2: hsl(210 49% 61%);  /* blue #6a9bcc */
+  --chart-3: hsl(86 20% 46%);  /* green #788c5d */
+  --chart-4: hsl(49 7% 67%);  /* mid gray #b0aea5 */
+  --chart-5: hsl(38 45% 55%);  /* gold */
+  --sidebar: hsl(48 30% 96%);  /* cream raised */
+  --sidebar-foreground: hsl(60 3% 8%);  /* charcoal */
+  --sidebar-primary: hsl(15 63% 60%);  /* orange */
+  --sidebar-primary-foreground: hsl(60 3% 8%);  /* charcoal */
+  --sidebar-accent: hsl(50 21% 89%);  /* light gray */
+  --sidebar-accent-foreground: hsl(60 3% 8%);  /* charcoal */
+  --sidebar-border: hsl(48 16% 84%);  /* warm gray/200 */
+  --sidebar-ring: hsl(15 63% 60%);  /* orange */
+  --background-color: hsl(0 0% 0% / 30%);  /* black/30% */
+  --semantic-background: hsl(40 6% 45%);  /* warm stone/500 */
+  --semantic-border: hsl(40 6% 60%);  /* warm stone/400 */
+  --semantic-foreground: hsl(0 0% 100%);  /* white */
 }
 
 /* Dark mode — derived from token file colors (tw/colors + rdx/colors) */
 .dark {
-  --background: hsl(0 0% 4%);  /* neutral/950 */
-  --foreground: hsl(0 0% 98%);  /* neutral/50 */
-  --card: hsl(0 0% 4%);  /* neutral/950 */
-  --card-foreground: hsl(0 0% 98%);  /* neutral/50 */
-  --popover: hsl(0 0% 4%);  /* neutral/950 */
-  --popover-foreground: hsl(0 0% 98%);  /* neutral/50 */
-  --primary: hsl(0 0% 98%);  /* neutral/50 */
-  --primary-foreground: hsl(0 0% 9%);  /* neutral/900 */
-  --secondary: hsl(0 0% 15%);  /* neutral/800 */
-  --secondary-foreground: hsl(0 0% 98%);  /* neutral/50 */
-  --muted: hsl(0 0% 15%);  /* neutral/800 */
-  --muted-foreground: hsl(0 0% 64%);  /* neutral/400 */
-  --accent: hsl(0 0% 15%);  /* neutral/800 */
-  --accent-foreground: hsl(0 0% 98%);  /* neutral/50 */
-  --destructive: hsl(0 63% 31%);  /* red/900 (tw/colors) */
-  --border: hsl(0 0% 15%);  /* neutral/800 */
-  --input: hsl(0 0% 15%);  /* neutral/800 */
-  --ring: hsl(0 0% 83%);  /* neutral/300 */
-  --chart-1: hsl(206 82% 65%);  /* blue/8 (rdx/colors) */
-  --chart-2: hsl(206 100% 50%);  /* blue/9 (rdx/colors) */
-  --chart-3: hsl(207 96% 48%);  /* blue/10 (rdx/colors) */
-  --chart-4: hsl(208 88% 43%);  /* blue/11 (rdx/colors) */
-  --chart-5: hsl(216 71% 23%);  /* blue/12 (rdx/colors) */
-  --sidebar: hsl(0 0% 9%);  /* neutral/900 */
-  --sidebar-foreground: hsl(0 0% 96%);  /* neutral/100 */
-  --sidebar-primary: hsl(0 0% 98%);  /* neutral/50 */
-  --sidebar-primary-foreground: hsl(0 0% 9%);  /* neutral/900 */
-  --sidebar-accent: hsl(0 0% 15%);  /* neutral/800 */
-  --sidebar-accent-foreground: hsl(0 0% 96%);  /* neutral/100 */
-  --sidebar-border: hsl(0 0% 15%);  /* neutral/800 */
-  --sidebar-ring: hsl(0 0% 83%);  /* neutral/300 */
+  --background: hsl(60 3% 8%);  /* charcoal #141413 */
+  --foreground: hsl(48 33% 97%);  /* cream #faf9f5 */
+  --card: hsl(60 3% 11%);  /* charcoal raised */
+  --card-foreground: hsl(48 33% 97%);  /* cream */
+  --popover: hsl(60 3% 11%);  /* charcoal raised */
+  --popover-foreground: hsl(48 33% 97%);  /* cream */
+  --primary: hsl(15 63% 60%);  /* orange #d97757 */
+  --primary-foreground: hsl(60 3% 8%);  /* charcoal */
+  --secondary: hsl(54 4% 16%);  /* charcoal/200 */
+  --secondary-foreground: hsl(48 33% 97%);  /* cream */
+  --muted: hsl(54 4% 16%);  /* charcoal/200 */
+  --muted-foreground: hsl(49 7% 67%);  /* mid gray #b0aea5 */
+  --accent: hsl(54 4% 19%);  /* charcoal/300 */
+  --accent-foreground: hsl(48 33% 97%);  /* cream */
+  --destructive: hsl(0 63% 40%);  /* red/800 */
+  --border: hsl(54 4% 19%);  /* charcoal/300 */
+  --input: hsl(54 4% 19%);  /* charcoal/300 */
+  --ring: hsl(15 63% 60%);  /* orange */
+  --chart-1: hsl(15 63% 60%);  /* orange */
+  --chart-2: hsl(210 49% 61%);  /* blue */
+  --chart-3: hsl(86 20% 46%);  /* green */
+  --chart-4: hsl(49 7% 67%);  /* mid gray */
+  --chart-5: hsl(38 45% 55%);  /* gold */
+  --sidebar: hsl(60 3% 6%);  /* charcoal deep */
+  --sidebar-foreground: hsl(48 33% 97%);  /* cream */
+  --sidebar-primary: hsl(15 63% 60%);  /* orange */
+  --sidebar-primary-foreground: hsl(60 3% 8%);  /* charcoal */
+  --sidebar-accent: hsl(54 4% 16%);  /* charcoal/200 */
+  --sidebar-accent-foreground: hsl(48 33% 97%);  /* cream */
+  --sidebar-border: hsl(54 4% 19%);  /* charcoal/300 */
+  --sidebar-ring: hsl(15 63% 60%);  /* orange */
   --background-color: hsl(0 0% 0% / 50%);  /* black overlay */
-  --semantic-background: hsl(25 5% 45%);  /* stone/500 (tw/colors) */
-  --semantic-border: hsl(24 5% 64%);  /* stone/400 (tw/colors) */
+  --semantic-background: hsl(40 6% 45%);  /* warm stone/500 */
+  --semantic-border: hsl(40 6% 60%);  /* warm stone/400 */
   --semantic-foreground: hsl(0 0% 100%);  /* white */
 }
 ```
@@ -112,40 +113,40 @@
 
 | Token | Light | Dark | Light alias | Dark alias |
 |---|---|---|---|---|
-| `--background` | hsl(0 0% 100%) | hsl(0 0% 4%) | white | neutral/950 |
-| `--foreground` | hsl(0 0% 4%) | hsl(0 0% 98%) | neutral/950 | neutral/50 |
-| `--card` | hsl(0 0% 100%) | hsl(0 0% 4%) | white | neutral/950 |
-| `--card-foreground` | hsl(0 0% 4%) | hsl(0 0% 98%) | neutral/950 | neutral/50 |
-| `--popover` | hsl(0 0% 100%) | hsl(0 0% 4%) | white | neutral/950 |
-| `--popover-foreground` | hsl(0 0% 4%) | hsl(0 0% 98%) | neutral/950 | neutral/50 |
-| `--primary` | hsl(0 0% 9%) | hsl(0 0% 98%) | neutral/900 | neutral/50 |
-| `--primary-foreground` | hsl(0 0% 98%) | hsl(0 0% 9%) | neutral/50 | neutral/900 |
-| `--secondary` | hsl(0 0% 96%) | hsl(0 0% 15%) | neutral/100 | neutral/800 |
-| `--secondary-foreground` | hsl(0 0% 4%) | hsl(0 0% 98%) | neutral/950 | neutral/50 |
-| `--muted` | hsl(0 0% 96%) | hsl(0 0% 15%) | neutral/100 | neutral/800 |
-| `--muted-foreground` | hsl(0 0% 45%) | hsl(0 0% 64%) | neutral/500 | neutral/400 |
-| `--accent` | hsl(0 0% 96%) | hsl(0 0% 15%) | neutral/100 | neutral/800 |
-| `--accent-foreground` | hsl(0 0% 9%) | hsl(0 0% 98%) | neutral/900 | neutral/50 |
-| `--destructive` | hsl(0 72% 51%) | hsl(0 63% 31%) | red/600 | red/900 (tw/colors) |
-| `--border` | hsl(0 0% 90%) | hsl(0 0% 15%) | neutral/200 | neutral/800 |
-| `--input` | hsl(0 0% 90%) | hsl(0 0% 15%) | neutral/200 | neutral/800 |
-| `--ring` | hsl(0 0% 45%) | hsl(0 0% 83%) | neutral/500 | neutral/300 |
-| `--chart-1` | hsl(206 82% 65%) | hsl(206 82% 65%) | blue/8 | blue/8 (rdx/colors) |
-| `--chart-2` | hsl(206 100% 50%) | hsl(206 100% 50%) | blue/9 | blue/9 (rdx/colors) |
-| `--chart-3` | hsl(207 96% 48%) | hsl(207 96% 48%) | blue/10 | blue/10 (rdx/colors) |
-| `--chart-4` | hsl(208 88% 43%) | hsl(208 88% 43%) | blue/11 | blue/11 (rdx/colors) |
-| `--chart-5` | hsl(216 71% 23%) | hsl(216 71% 23%) | blue/12 | blue/12 (rdx/colors) |
-| `--sidebar` | hsl(0 0% 98%) | hsl(0 0% 9%) | neutral/50 | neutral/900 |
-| `--sidebar-foreground` | hsl(0 0% 4%) | hsl(0 0% 96%) | neutral/950 | neutral/100 |
-| `--sidebar-primary` | hsl(0 0% 9%) | hsl(0 0% 98%) | neutral/900 | neutral/50 |
-| `--sidebar-primary-foreground` | hsl(0 0% 98%) | hsl(0 0% 9%) | neutral/50 | neutral/900 |
-| `--sidebar-accent` | hsl(0 0% 96%) | hsl(0 0% 15%) | neutral/100 | neutral/800 |
-| `--sidebar-accent-foreground` | hsl(0 0% 9%) | hsl(0 0% 96%) | neutral/900 | neutral/100 |
-| `--sidebar-border` | hsl(0 0% 90%) | hsl(0 0% 15%) | neutral/200 | neutral/800 |
-| `--sidebar-ring` | hsl(0 0% 45%) | hsl(0 0% 83%) | neutral/500 | neutral/300 |
-| `--background-color` | hsl(0 0% 0% / 30%) | hsl(0 0% 0% / 50%) | black/5 | black overlay |
-| `--semantic-background` | hsl(25 5% 45%) | hsl(25 5% 45%) | stone/500 | stone/500 (tw/colors) |
-| `--semantic-border` | hsl(24 5% 64%) | hsl(24 5% 64%) | stone/400 | stone/400 (tw/colors) |
+| `--background` | hsl(48 33% 97%) | hsl(60 3% 8%) | cream #faf9f5 | charcoal #141413 |
+| `--foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal #141413 | cream #faf9f5 |
+| `--card` | hsl(48 40% 99%) | hsl(60 3% 11%) | warm white | charcoal raised |
+| `--card-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
+| `--popover` | hsl(48 40% 99%) | hsl(60 3% 11%) | warm white | charcoal raised |
+| `--popover-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
+| `--primary` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange #d97757 | orange #d97757 |
+| `--primary-foreground` | hsl(60 3% 8%) | hsl(60 3% 8%) | charcoal (a11y 6.2:1) | charcoal |
+| `--secondary` | hsl(50 21% 89%) | hsl(54 4% 16%) | light gray #e8e6dc | charcoal/200 |
+| `--secondary-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
+| `--muted` | hsl(50 21% 89%) | hsl(54 4% 16%) | light gray #e8e6dc | charcoal/200 |
+| `--muted-foreground` | hsl(48 6% 40%) | hsl(49 7% 67%) | warm gray | mid gray #b0aea5 |
+| `--accent` | hsl(50 21% 89%) | hsl(54 4% 19%) | light gray #e8e6dc | charcoal/300 |
+| `--accent-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
+| `--destructive` | hsl(0 72% 51%) | hsl(0 63% 40%) | red/600 | red/800 |
+| `--border` | hsl(48 16% 84%) | hsl(54 4% 19%) | warm gray/200 | charcoal/300 |
+| `--input` | hsl(48 16% 84%) | hsl(54 4% 19%) | warm gray/200 | charcoal/300 |
+| `--ring` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange | orange |
+| `--chart-1` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange #d97757 | orange |
+| `--chart-2` | hsl(210 49% 61%) | hsl(210 49% 61%) | blue #6a9bcc | blue |
+| `--chart-3` | hsl(86 20% 46%) | hsl(86 20% 46%) | green #788c5d | green |
+| `--chart-4` | hsl(49 7% 67%) | hsl(49 7% 67%) | mid gray #b0aea5 | mid gray |
+| `--chart-5` | hsl(38 45% 55%) | hsl(38 45% 55%) | gold | gold |
+| `--sidebar` | hsl(48 30% 96%) | hsl(60 3% 6%) | cream raised | charcoal deep |
+| `--sidebar-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
+| `--sidebar-primary` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange | orange |
+| `--sidebar-primary-foreground` | hsl(60 3% 8%) | hsl(60 3% 8%) | charcoal | charcoal |
+| `--sidebar-accent` | hsl(50 21% 89%) | hsl(54 4% 16%) | light gray | charcoal/200 |
+| `--sidebar-accent-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
+| `--sidebar-border` | hsl(48 16% 84%) | hsl(54 4% 19%) | warm gray/200 | charcoal/300 |
+| `--sidebar-ring` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange | orange |
+| `--background-color` | hsl(0 0% 0% / 30%) | hsl(0 0% 0% / 50%) | black/30% | black/50% |
+| `--semantic-background` | hsl(40 6% 45%) | hsl(40 6% 45%) | warm stone/500 | warm stone/500 |
+| `--semantic-border` | hsl(40 6% 60%) | hsl(40 6% 60%) | warm stone/400 | warm stone/400 |
 | `--semantic-foreground` | hsl(0 0% 100%) | hsl(0 0% 100%) | white | white |
 
 ### Token Usage Guide
