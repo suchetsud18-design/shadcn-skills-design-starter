@@ -169,6 +169,10 @@ import {
   ChartDemo,
   ComboboxDemo,
   DatePickerDemo,
+  DatePickerRangeDemo,
+  DatePickerDobDemo,
+  DatePickerInputDemo,
+  DatePickerDateTimeDemo,
   SonnerDemo,
 } from "@/components/demos/interactive"
 
@@ -1006,7 +1010,13 @@ export const galleries: Record<string, Gallery[]> = {
     },
   ],
 
-  "date-picker": [{ title: "Example", demos: [{ node: <DatePickerDemo /> }] }],
+  "date-picker": [
+    { title: "Basic", description: "A single date in a popover.", demos: [{ node: <DatePickerDemo /> }] },
+    { title: "Date Range", description: "Select a start and end date across two months.", demos: [{ node: <DatePickerRangeDemo /> }] },
+    { title: "Date of Birth", description: "Dropdown month and year caption for fast navigation.", demos: [{ node: <DatePickerDobDemo /> }] },
+    { title: "With Input", description: "Type a date or pick it from the calendar.", demos: [{ node: <DatePickerInputDemo /> }] },
+    { title: "Date and Time", description: "A date popover beside a native time input.", demos: [{ node: <DatePickerDateTimeDemo /> }] },
+  ],
 
   dialog: [
     {
