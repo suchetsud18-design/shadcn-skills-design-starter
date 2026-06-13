@@ -93,12 +93,18 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
+  CommandShortcut,
 } from "@/components/ui/command"
 import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
 import {
@@ -1711,18 +1717,28 @@ export const galleries: Record<string, Gallery[]> = {
 
   command: [
     {
-      title: "Example",
+      title: "Groups",
       demos: [
         {
           node: (
             <Command className="max-w-sm rounded-lg border shadow-sm">
-              <CommandInput placeholder="Type a command…" />
+              <CommandInput placeholder="Type a command or search…" />
               <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup heading="Suggestions">
                   <CommandItem><Search className="mr-2 size-4" /> Search</CommandItem>
                   <CommandItem><User className="mr-2 size-4" /> Profile</CommandItem>
-                  <CommandItem><Settings className="mr-2 size-4" /> Settings</CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Settings">
+                  <CommandItem>
+                    <Settings className="mr-2 size-4" /> Settings
+                    <CommandShortcut>⌘S</CommandShortcut>
+                  </CommandItem>
+                  <CommandItem>
+                    <CreditCard className="mr-2 size-4" /> Billing
+                    <CommandShortcut>⌘B</CommandShortcut>
+                  </CommandItem>
                 </CommandGroup>
               </CommandList>
             </Command>
@@ -1734,7 +1750,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   "context-menu": [
     {
-      title: "Example",
+      title: "Basic",
       demos: [
         {
           node: (
@@ -1742,11 +1758,28 @@ export const galleries: Record<string, Gallery[]> = {
               <ContextMenuTrigger className="flex h-32 w-72 items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground">
                 Right-click here
               </ContextMenuTrigger>
-              <ContextMenuContent>
-                <ContextMenuItem>Back</ContextMenuItem>
-                <ContextMenuItem>Forward</ContextMenuItem>
+              <ContextMenuContent className="w-52">
+                <ContextMenuItem>
+                  Back
+                  <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                  Forward
+                  <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+                </ContextMenuItem>
                 <ContextMenuSeparator />
-                <ContextMenuItem>Reload</ContextMenuItem>
+                <ContextMenuSub>
+                  <ContextMenuSubTrigger>More tools</ContextMenuSubTrigger>
+                  <ContextMenuSubContent>
+                    <ContextMenuItem>Save page</ContextMenuItem>
+                    <ContextMenuItem>Developer tools</ContextMenuItem>
+                  </ContextMenuSubContent>
+                </ContextMenuSub>
+                <ContextMenuSeparator />
+                <ContextMenuItem>
+                  Reload
+                  <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+                </ContextMenuItem>
               </ContextMenuContent>
             </ContextMenu>
           ),
@@ -2021,7 +2054,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   menubar: [
     {
-      title: "Example",
+      title: "Basic",
       demos: [
         {
           node: (
