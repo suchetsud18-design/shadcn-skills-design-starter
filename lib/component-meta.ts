@@ -408,6 +408,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { component: "Dialog", prop: "open", type: "boolean", default: "—", description: "Controlled open state." },
       { component: "Dialog", prop: "onOpenChange", type: "(open) => void", default: "—", description: "Open-state handler." },
       { component: "Dialog", prop: "modal", type: "boolean", default: "true", description: "Block interaction with the rest of the page." },
+      { component: "DialogContent", prop: "showCloseButton", type: "boolean", default: "true", description: "Show the built-in close (X) button." },
     ],
     tokens: [
       { token: "--card", value: "bg-card", usage: "Dialog surface", swatch: true },
@@ -426,6 +427,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     usageCode: "<Drawer>\n  <DrawerTrigger asChild>\n    <Button variant=\"outline\">Open</Button>\n  </DrawerTrigger>\n  <DrawerContent>\n    <DrawerHeader>\n      <DrawerTitle>Title</DrawerTitle>\n      <DrawerDescription>Description</DrawerDescription>\n    </DrawerHeader>\n  </DrawerContent>\n</Drawer>",
     props: [
       { component: "Drawer", prop: "open", type: "boolean", default: "—", description: "Controlled open state." },
+      { component: "Drawer", prop: "direction", type: "\"top\" | \"right\" | \"bottom\" | \"left\"", default: "\"bottom\"", description: "Edge the drawer enters from." },
       { component: "Drawer", prop: "shouldScaleBackground", type: "boolean", default: "true", description: "Scale the page behind the drawer." },
     ],
     tokens: [
@@ -780,6 +782,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     usageCode: "<Sheet>\n  <SheetTrigger asChild>\n    <Button variant=\"outline\">Open</Button>\n  </SheetTrigger>\n  <SheetContent side=\"right\">\n    <SheetHeader>\n      <SheetTitle>Title</SheetTitle>\n      <SheetDescription>Description</SheetDescription>\n    </SheetHeader>\n  </SheetContent>\n</Sheet>",
     props: [
       { component: "SheetContent", prop: "side", type: "\"top\" | \"right\" | \"bottom\" | \"left\"", default: "\"right\"", description: "Edge the sheet enters from." },
+      { component: "SheetContent", prop: "showCloseButton", type: "boolean", default: "true", description: "Show the built-in close (X) button." },
       { component: "Sheet", prop: "open", type: "boolean", default: "—", description: "Controlled open state." },
     ],
     tokens: [

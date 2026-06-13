@@ -252,6 +252,7 @@ const M = {
       ["Dialog", "open", "boolean", "—", "Controlled open state."],
       ["Dialog", "onOpenChange", "(open) => void", "—", "Open-state handler."],
       ["Dialog", "modal", "boolean", "true", "Block interaction with the rest of the page."],
+      ["DialogContent", "showCloseButton", "boolean", "true", "Show the built-in close (X) button."],
     ],
     tok: [sw("--card", "bg-card", "Dialog surface"), sw("--foreground", "text-foreground", "Title"), sw("--muted-foreground", "text-muted-foreground", "Description")],
     a11y: A_DIALOG,
@@ -263,6 +264,7 @@ const M = {
     use: `<Drawer>\n  <DrawerTrigger asChild>\n    <Button variant="outline">Open</Button>\n  </DrawerTrigger>\n  <DrawerContent>\n    <DrawerHeader>\n      <DrawerTitle>Title</DrawerTitle>\n      <DrawerDescription>Description</DrawerDescription>\n    </DrawerHeader>\n  </DrawerContent>\n</Drawer>`,
     props: [
       ["Drawer", "open", "boolean", "—", "Controlled open state."],
+      ["Drawer", "direction", `"top" | "right" | "bottom" | "left"`, `"bottom"`, "Edge the drawer enters from."],
       ["Drawer", "shouldScaleBackground", "boolean", "true", "Scale the page behind the drawer."],
     ],
     tok: [sw("--background", "bg-background", "Drawer surface"), sw("--muted", "bg-muted", "Drag handle")],
@@ -490,6 +492,7 @@ const M = {
     use: `<Sheet>\n  <SheetTrigger asChild>\n    <Button variant="outline">Open</Button>\n  </SheetTrigger>\n  <SheetContent side="right">\n    <SheetHeader>\n      <SheetTitle>Title</SheetTitle>\n      <SheetDescription>Description</SheetDescription>\n    </SheetHeader>\n  </SheetContent>\n</Sheet>`,
     props: [
       ["SheetContent", "side", `"top" | "right" | "bottom" | "left"`, `"right"`, "Edge the sheet enters from."],
+      ["SheetContent", "showCloseButton", "boolean", "true", "Show the built-in close (X) button."],
       ["Sheet", "open", "boolean", "—", "Controlled open state."],
     ],
     tok: [sw("--background", "bg-background", "Sheet surface"), sw("--border", "border-border", "Edge border")],

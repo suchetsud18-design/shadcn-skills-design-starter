@@ -1607,7 +1607,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   "alert-dialog": [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -1794,7 +1794,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   dialog: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -1805,14 +1805,47 @@ export const galleries: Record<string, Gallery[]> = {
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Edit profile</DialogTitle>
-                  <DialogDescription>Make changes to your profile.</DialogDescription>
+                  <DialogDescription>
+                    Make changes to your profile here. Click save when you&apos;re done.
+                  </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-2">
                   <Label htmlFor="g-dlg">Name</Label>
                   <Input id="g-dlg" defaultValue="Pedro Duarte" />
                 </div>
                 <DialogFooter>
-                  <Button type="submit">Save</Button>
+                  <Button type="submit">Save changes</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Scrollable",
+      demos: [
+        {
+          node: (
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline">Terms of service</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Terms of Service</DialogTitle>
+                  <DialogDescription>Please read these terms carefully.</DialogDescription>
+                </DialogHeader>
+                <div className="max-h-72 overflow-y-auto pr-4 text-sm text-muted-foreground">
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <p key={i} className="mb-3">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                      eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                  ))}
+                </div>
+                <DialogFooter>
+                  <Button type="submit">I agree</Button>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
@@ -1824,7 +1857,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   drawer: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
