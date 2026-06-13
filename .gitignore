@@ -42,3 +42,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# external Figma tool — clone it yourself: git clone https://github.com/plugin87/figma-rest-api
+/figma-rest-api
