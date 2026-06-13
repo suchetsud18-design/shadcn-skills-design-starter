@@ -171,6 +171,11 @@ import {
   AreaChartDemo,
   PieChartDemo,
   ComboboxDemo,
+  ComboboxMultipleDemo,
+  ComboboxClearDemo,
+  ComboboxAutoHighlightDemo,
+  ComboboxDisabledDemo,
+  ComboboxInvalidDemo,
   DatePickerDemo,
   DatePickerRangeDemo,
   DatePickerDobDemo,
@@ -938,7 +943,14 @@ export const galleries: Record<string, Gallery[]> = {
     },
   ],
 
-  combobox: [{ title: "Example", demos: [{ node: <ComboboxDemo /> }] }],
+  combobox: [
+    { title: "Basic", description: "Search and select a single value.", demos: [{ node: <ComboboxDemo /> }] },
+    { title: "Multiple", description: "Select several values as removable chips.", demos: [{ node: <ComboboxMultipleDemo /> }] },
+    { title: "Clear Button", description: "Show a clear button via the showClear prop.", demos: [{ node: <ComboboxClearDemo /> }] },
+    { title: "Auto Highlight", description: "Highlight the first match as you type.", demos: [{ node: <ComboboxAutoHighlightDemo /> }] },
+    { title: "Disabled", description: "A non-interactive, disabled combobox.", demos: [{ node: <ComboboxDisabledDemo /> }] },
+    { title: "Invalid", description: "Error styling via aria-invalid.", demos: [{ node: <ComboboxInvalidDemo /> }] },
+  ],
 
   command: [
     {

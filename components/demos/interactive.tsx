@@ -15,7 +15,7 @@ import {
   PieChart,
   XAxis,
 } from "recharts"
-import { Check, ChevronsUpDown, CalendarIcon } from "lucide-react"
+import { CalendarIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -23,13 +23,17 @@ import { Calendar } from "@/components/ui/calendar"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command"
+  Combobox,
+  ComboboxInput,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxEmpty,
+  ComboboxChips,
+  ComboboxChip,
+  ComboboxChipsInput,
+  ComboboxValue,
+} from "@/components/ui/combobox"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import {
   type ChartConfig,
@@ -207,55 +211,90 @@ export function PieChartDemo() {
 
 /* --------------------------------------------------------------- combobox */
 
-const frameworks = [
-  { value: "next.js", label: "Next.js" },
-  { value: "sveltekit", label: "SvelteKit" },
-  { value: "nuxt.js", label: "Nuxt.js" },
-  { value: "remix", label: "Remix" },
-  { value: "astro", label: "Astro" },
-]
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
 
+/* Shared dropdown body */
+function FrameworkOptions() {
+  return (
+    <ComboboxContent>
+      <ComboboxEmpty>No framework found.</ComboboxEmpty>
+      <ComboboxList>
+        {(item: string) => (
+          <ComboboxItem key={item} value={item}>
+            {item}
+          </ComboboxItem>
+        )}
+      </ComboboxList>
+    </ComboboxContent>
+  )
+}
+
+/* Basic */
 export function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInput placeholder="Select a framework" className="w-[220px]" />
+      <FrameworkOptions />
+    </Combobox>
+  )
+}
+
+/* Multiple — chips with managed selection */
+export function ComboboxMultipleDemo() {
+  const [value, setValue] = React.useState<string[]>([])
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="w-[220px] justify-between"
-        >
-          {value ? frameworks.find((f) => f.value === value)?.label : "Select framework..."}
-          <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-[220px] p-0">
-        <Command>
-          <CommandInput placeholder="Search framework..." />
-          <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
-            <CommandGroup>
-              {frameworks.map((f) => (
-                <CommandItem
-                  key={f.value}
-                  value={f.value}
-                  onSelect={(cur) => {
-                    setValue(cur === value ? "" : cur)
-                    setOpen(false)
-                  }}
-                >
-                  <Check className={cn("mr-2 size-4", value === f.value ? "opacity-100" : "opacity-0")} />
-                  {f.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
+    <Combobox items={frameworks} multiple value={value} onValueChange={setValue}>
+      <ComboboxChips className="w-[260px]">
+        <ComboboxValue>
+          {(items: string[]) =>
+            items.map((item) => <ComboboxChip key={item}>{item}</ComboboxChip>)
+          }
+        </ComboboxValue>
+        <ComboboxChipsInput placeholder="Add framework" />
+      </ComboboxChips>
+      <FrameworkOptions />
+    </Combobox>
+  )
+}
+
+/* Clear button */
+export function ComboboxClearDemo() {
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInput showClear placeholder="Select a framework" className="w-[220px]" />
+      <FrameworkOptions />
+    </Combobox>
+  )
+}
+
+/* Auto highlight the first match */
+export function ComboboxAutoHighlightDemo() {
+  return (
+    <Combobox items={frameworks} autoHighlight>
+      <ComboboxInput placeholder="Select a framework" className="w-[220px]" />
+      <FrameworkOptions />
+    </Combobox>
+  )
+}
+
+/* Disabled */
+export function ComboboxDisabledDemo() {
+  return (
+    <Combobox items={frameworks} disabled>
+      <ComboboxInput disabled placeholder="Select a framework" className="w-[220px]" />
+      <FrameworkOptions />
+    </Combobox>
+  )
+}
+
+/* Invalid */
+export function ComboboxInvalidDemo() {
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInput aria-invalid placeholder="Select a framework" className="w-[220px]" />
+      <FrameworkOptions />
+    </Combobox>
   )
 }
 

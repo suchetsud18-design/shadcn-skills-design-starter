@@ -190,12 +190,17 @@ const M = {
   },
   combobox: {
     figma: "73-187",
-    imp: `import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"\nimport {\n  Command,\n  CommandEmpty,\n  CommandGroup,\n  CommandInput,\n  CommandItem,\n  CommandList,\n} from "@/components/ui/command"`,
-    use: `<Popover>\n  <PopoverTrigger asChild>\n    <Button variant="outline">{value ?? "Select…"}</Button>\n  </PopoverTrigger>\n  <PopoverContent className="p-0">\n    <Command>\n      <CommandInput placeholder="Search…" />\n      <CommandList>\n        <CommandEmpty>No results.</CommandEmpty>\n        <CommandGroup>\n          {options.map((o) => (\n            <CommandItem key={o} onSelect={() => setValue(o)}>{o}</CommandItem>\n          ))}\n        </CommandGroup>\n      </CommandList>\n    </Command>\n  </PopoverContent>\n</Popover>`,
-    props: [["—", "—", "—", "—", "Composed from Popover + Command — no standalone component."]],
+    imp: `import {\n  Combobox,\n  ComboboxInput,\n  ComboboxContent,\n  ComboboxList,\n  ComboboxItem,\n  ComboboxEmpty,\n} from "@/components/ui/combobox"`,
+    use: `<Combobox items={frameworks}>\n  <ComboboxInput placeholder="Select a framework" />\n  <ComboboxContent>\n    <ComboboxEmpty>No framework found.</ComboboxEmpty>\n    <ComboboxList>\n      {(item) => (\n        <ComboboxItem key={item} value={item}>{item}</ComboboxItem>\n      )}\n    </ComboboxList>\n  </ComboboxContent>\n</Combobox>`,
+    props: [
+      ["Combobox", "items", "T[]", "—", "The list of selectable items."],
+      ["Combobox", "multiple", "boolean", "false", "Allow multiple values (renders chips)."],
+      ["Combobox", "value / onValueChange", "T | T[] / fn", "—", "Controlled selection."],
+      ["ComboboxInput", "showClear", "boolean", "false", "Show a clear button."],
+    ],
     tok: [sw("--popover", "bg-popover", "Dropdown surface"), sw("--accent", "bg-accent", "Highlighted option")],
     a11y: A_SELECT,
-    note: "An autocomplete built from Popover + Command (cmdk). Not a single primitive.",
+    note: "Built on the Base UI Combobox primitive (npx shadcn add combobox).",
   },
   command: {
     figma: "73-223",

@@ -307,16 +307,19 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "combobox": {
     figmaNode: "73-187",
-    importCode: "import { Popover, PopoverContent, PopoverTrigger } from \"@/components/ui/popover\"\nimport {\n  Command,\n  CommandEmpty,\n  CommandGroup,\n  CommandInput,\n  CommandItem,\n  CommandList,\n} from \"@/components/ui/command\"",
-    usageCode: "<Popover>\n  <PopoverTrigger asChild>\n    <Button variant=\"outline\">{value ?? \"Select…\"}</Button>\n  </PopoverTrigger>\n  <PopoverContent className=\"p-0\">\n    <Command>\n      <CommandInput placeholder=\"Search…\" />\n      <CommandList>\n        <CommandEmpty>No results.</CommandEmpty>\n        <CommandGroup>\n          {options.map((o) => (\n            <CommandItem key={o} onSelect={() => setValue(o)}>{o}</CommandItem>\n          ))}\n        </CommandGroup>\n      </CommandList>\n    </Command>\n  </PopoverContent>\n</Popover>",
+    importCode: "import {\n  Combobox,\n  ComboboxInput,\n  ComboboxContent,\n  ComboboxList,\n  ComboboxItem,\n  ComboboxEmpty,\n} from \"@/components/ui/combobox\"",
+    usageCode: "<Combobox items={frameworks}>\n  <ComboboxInput placeholder=\"Select a framework\" />\n  <ComboboxContent>\n    <ComboboxEmpty>No framework found.</ComboboxEmpty>\n    <ComboboxList>\n      {(item) => (\n        <ComboboxItem key={item} value={item}>{item}</ComboboxItem>\n      )}\n    </ComboboxList>\n  </ComboboxContent>\n</Combobox>",
     props: [
-      { component: "—", prop: "—", type: "—", default: "—", description: "Composed from Popover + Command — no standalone component." },
+      { component: "Combobox", prop: "items", type: "T[]", default: "—", description: "The list of selectable items." },
+      { component: "Combobox", prop: "multiple", type: "boolean", default: "false", description: "Allow multiple values (renders chips)." },
+      { component: "Combobox", prop: "value / onValueChange", type: "T | T[] / fn", default: "—", description: "Controlled selection." },
+      { component: "ComboboxInput", prop: "showClear", type: "boolean", default: "false", description: "Show a clear button." },
     ],
     tokens: [
       { token: "--popover", value: "bg-popover", usage: "Dropdown surface", swatch: true },
       { token: "--accent", value: "bg-accent", usage: "Highlighted option", swatch: true },
     ],
-    a11yNote: "An autocomplete built from Popover + Command (cmdk). Not a single primitive.",
+    a11yNote: "Built on the Base UI Combobox primitive (npx shadcn add combobox).",
     a11y: [
       { keys: "↑ / ↓", action: "Move between options" },
       { keys: "Enter / Space", action: "Select option" },
