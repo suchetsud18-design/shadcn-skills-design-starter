@@ -4,9 +4,9 @@
 (`NN6Wp4Hgsug3OKhiQdL27d`) — 90 pages
 **Compared against:** docs registry (`lib/docs.ts`) · installed `components/ui/` · the
 `shadcn-ui-design` skill (`SKILL.md` + `references/DESIGN.md`)
-**Date:** 2026-06-01
-**Method:** Figma REST API (`/v1/files/.../nodes`) → enumerate the "Components" section
-pages, normalise names, diff against the project's documented + installed set.
+**Date:** 2026-06-13 _(refresh of the 2026-06-01 audit)_
+**Method:** Figma REST API (`/v1/files/.../nodes`, PAT from `.mcp.json`) → enumerate the
+"Components" section pages, normalise names, diff against the project's documented + installed set.
 
 ---
 
@@ -16,15 +16,24 @@ pages, normalise names, diff against the project's documented + installed set.
 |---|---|---|
 | Figma "Components" section (pages 9–63) | **55** | — |
 | Docs registry (`componentDocs`) | **55** | **1:1 exact match** |
-| Installed `components/ui/` primitives | 52 | all present in the registry |
+| Installed `components/ui/` primitives | 53 | all present in the registry |
 | Demos (`app/components/[slug]/demos.tsx`) | 55 | every component has a demo |
 
 ✅ **No gaps in either direction** — zero components are *in Figma but undocumented*, and
 zero are *documented but missing from Figma*.
 
-> The 52-vs-55 difference is expected: **combobox**, **data-table**, and **date-picker**
-> are *composed* recipes (popover + command, table + tanstack, popover + calendar) with no
-> single `ui/*.tsx` file. They still appear in the registry and have demos.
+> The 53-vs-55 difference is expected: **data-table** and **date-picker** are *composed*
+> recipes (table + tanstack, popover + calendar) with no single `ui/*.tsx` file. They still
+> appear in the registry and have demos.
+>
+> **Changed since the 2026-06-01 audit:** `combobox` is no longer a composed recipe — it was
+> migrated to the **Base UI primitive** (`npx shadcn add combobox`, `@base-ui/react`) and now
+> ships its own `components/ui/combobox.tsx`. So the installed count went **52 → 53** and the
+> composed-without-a-ui-file set shrank from 3 to **2** (data-table, date-picker).
+
+> Note: `components/ui/` now also contains **12 `*.stories.tsx`** files (the Storybook pilot +
+> batch 1). They are not components — exclude them when counting primitives (65 `*.tsx` − 12
+> stories = 53).
 
 ### Full component set (55)
 
@@ -58,15 +67,14 @@ Input Group, Item, Kbd, Native Select, Spinner** — all of which the project al
 
 ## 3. SKILL.md fixes applied
 
-The audit found three references in `SKILL.md` that did not match the actual component set.
-All were corrected:
+References in `SKILL.md` that did not match the actual component set were corrected:
 
 | Was | Issue | Fixed to |
 |---|---|---|
 | §3.4 `Form` (react-hook-form + zod) | project installs `field`, not `form` | rewrote §3.4 as a **`Field`** pattern (`FieldGroup`/`FieldLabel`/`FieldDescription`/`FieldError`, library-agnostic) |
 | §8 install: `add form …` | same | `add field …` |
-| §10 `Combobox → add combobox` | shadcn has no `combobox` to `add` | `add popover command` (composed) |
 | §10 `Resizable → add resizable` | not in Figma, not installed, not documented | row replaced with `Field → add field` |
+| §10 `Combobox → add popover command` (composed) | **stale (2026-06-13):** combobox is now the Base UI primitive with its own `ui/combobox.tsx` | `add combobox` (Base UI primitive — `@base-ui/react`) |
 
 ---
 
@@ -82,8 +90,23 @@ Present in the Figma file but **not** part of the component audit; not yet built
 
 ---
 
+## 5. Project surfaces added since the last audit (context, not Figma coverage)
+
+Not part of the Figma↔component diff, but worth noting as the project has grown:
+
+- **Foundation pages** — `/tokens`, `/typography`, `/spacing`, `/sizing`, `/effects`.
+- **Docs-shadcn-alignment** — per-component pages reshaped to the shadcn docs structure
+  (Installation → Usage → Examples → API Reference → Design Tokens → Accessibility).
+- **Storybook** (Dev & QA) — Storybook 10 + `@storybook/nextjs-vite`, theme toolbar, a11y,
+  and Vitest "Run tests". Story coverage is **12/55** (pilot + form-inputs batch 1), expanding
+  toward all 55.
+
+---
+
 ## Conclusion
 
 **Component coverage between Figma and the project is 100% (55/55)** — nothing missing,
-nothing extra. The only follow-ups are the upstream Figma name typos (§2) and the
-`SKILL.md` corrections, which have been applied (§3).
+nothing extra. Counts were refreshed (installed primitives 52 → **53**; composed-only set
+3 → **2** after the combobox→Base UI migration). The only follow-ups are the upstream Figma
+name typos (§2); the `SKILL.md` corrections — including the new combobox install fix — have
+been applied (§3).

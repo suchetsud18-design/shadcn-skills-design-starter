@@ -593,7 +593,7 @@ export function CustomCard({ highlighted, className, children, ...props }: Custo
 | Button | `Button` | `add button` |
 | Input text | `Input` | `add input` |
 | Dropdown list | `Select` | `add select` |
-| Search + filter | `Combobox` | `add popover command` (composed — no `combobox` to add) |
+| Search + filter | `Combobox` | `add combobox` (Base UI primitive — `@base-ui/react`) |
 | Date picker | `Calendar` + `Popover` | `add calendar popover` |
 | Table | `Table` | `add table` |
 | Modal | `Dialog` | `add dialog` |
