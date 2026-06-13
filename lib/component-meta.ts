@@ -517,7 +517,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { token: "--muted-foreground", value: "text-muted-foreground", usage: "Placeholder", swatch: true },
       { token: "h-9 px-3", value: "36 / 12px", usage: "Size" },
     ],
-    a11yNote: "Every input needs an associated Label (htmlFor).",
+    a11yNote: "Every input needs an associated Label (htmlFor); compose with Field for description + error.",
     a11y: [
       { keys: "Tab", action: "Move focus" },
     ],
@@ -590,7 +590,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { token: "--foreground", value: "text-foreground", usage: "Label text", swatch: true },
       { token: "text-sm font-medium", value: "14 / 500", usage: "Type" },
     ],
-    a11yNote: "Clicking the label focuses its associated control.",
+    a11yNote: "Clicking the label focuses its associated control; use FieldLabel inside a Field.",
   },
   "menubar": {
     figmaNode: "73-1979",
@@ -918,13 +918,14 @@ export const componentMeta: Record<string, ComponentMeta> = {
     props: [
       { component: "Textarea", prop: "disabled", type: "boolean", default: "false", description: "Disable the field." },
       { component: "Textarea", prop: "rows", type: "number", default: "—", description: "Visible text rows." },
+      { component: "Textarea", prop: "aria-invalid", type: "boolean", default: "—", description: "Apply the invalid styling + a11y state." },
     ],
     tokens: [
       { token: "--input", value: "border-input", usage: "Border", swatch: true },
       { token: "--ring", value: "ring-ring", usage: "Focus ring", swatch: true },
       { token: "--muted-foreground", value: "text-muted-foreground", usage: "Placeholder", swatch: true },
     ],
-    a11yNote: "Multi-line input; pair with a Label.",
+    a11yNote: "Multi-line input; pair with a Label, or compose with Field for label + description.",
     a11y: [
       { keys: "Tab", action: "Move focus" },
     ],

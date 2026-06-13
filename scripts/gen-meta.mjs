@@ -320,7 +320,7 @@ const M = {
     ],
     tok: [sw("--input", "border-input", "Border"), sw("--ring", "ring-ring", "Focus ring"), sw("--muted-foreground", "text-muted-foreground", "Placeholder"), ["h-9 px-3", "36 / 12px", "Size"]],
     a11y: [["Tab", "Move focus"]],
-    note: "Every input needs an associated Label (htmlFor).",
+    note: "Every input needs an associated Label (htmlFor); compose with Field for description + error.",
   },
   "input-group": {
     figma: "1188-5363",
@@ -365,7 +365,7 @@ const M = {
     use: `<Label htmlFor="email">Your email</Label>`,
     props: [["Label", "htmlFor", "string", "—", "Associates the label with a control id."]],
     tok: [sw("--foreground", "text-foreground", "Label text"), ["text-sm font-medium", "14 / 500", "Type"]],
-    note: "Clicking the label focuses its associated control.",
+    note: "Clicking the label focuses its associated control; use FieldLabel inside a Field.",
   },
   menubar: {
     figma: "73-1979",
@@ -582,10 +582,11 @@ const M = {
     props: [
       ["Textarea", "disabled", "boolean", "false", "Disable the field."],
       ["Textarea", "rows", "number", "—", "Visible text rows."],
+      ["Textarea", "aria-invalid", "boolean", "—", "Apply the invalid styling + a11y state."],
     ],
     tok: [sw("--input", "border-input", "Border"), sw("--ring", "ring-ring", "Focus ring"), sw("--muted-foreground", "text-muted-foreground", "Placeholder")],
     a11y: [["Tab", "Move focus"]],
-    note: "Multi-line input; pair with a Label.",
+    note: "Multi-line input; pair with a Label, or compose with Field for label + description.",
   },
   toggle: {
     figma: "73-2902",

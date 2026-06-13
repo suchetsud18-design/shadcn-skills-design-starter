@@ -303,23 +303,76 @@ export const galleries: Record<string, Gallery[]> = {
 
   input: [
     {
-      title: "States",
+      title: "Default",
       demos: [
-        { label: "default", node: <Input className="w-56" placeholder="Default" /> },
-        { label: "disabled", node: <Input className="w-56" disabled placeholder="Disabled" /> },
-        { label: "invalid", node: <Input className="w-56" aria-invalid placeholder="Invalid" /> },
-        { label: "with value", node: <Input className="w-56" defaultValue="hello@example.com" /> },
+        { node: <Input type="email" placeholder="Email" aria-label="Email" className="w-64" /> },
       ],
     },
     {
-      title: "With label",
+      title: "With label & description",
       demos: [
         {
           node: (
-            <div className="grid w-56 gap-2">
-              <Label htmlFor="g-email">Email</Label>
-              <Input id="g-email" type="email" placeholder="name@example.com" />
-            </div>
+            <Field className="w-64">
+              <FieldLabel htmlFor="g-in-email">Email</FieldLabel>
+              <Input id="g-in-email" type="email" placeholder="name@example.com" />
+              <FieldDescription>We&apos;ll never share your email.</FieldDescription>
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Disabled",
+      demos: [
+        {
+          node: (
+            <Field data-disabled="true" className="w-64">
+              <FieldLabel htmlFor="g-in-dis">Email</FieldLabel>
+              <Input id="g-in-dis" type="email" placeholder="name@example.com" disabled />
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Invalid",
+      demos: [
+        {
+          node: (
+            <Field data-invalid="true" className="w-64">
+              <FieldLabel htmlFor="g-in-inv">Email</FieldLabel>
+              <Input id="g-in-inv" type="email" defaultValue="not-an-email" aria-invalid />
+              <FieldError>Enter a valid email address.</FieldError>
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "File",
+      demos: [
+        {
+          node: (
+            <Field className="w-64">
+              <FieldLabel htmlFor="g-in-file">Picture</FieldLabel>
+              <Input id="g-in-file" type="file" />
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Inline",
+      demos: [
+        {
+          node: (
+            <Field orientation="horizontal" className="w-72">
+              <Input type="search" placeholder="Search…" aria-label="Search" />
+              <Button type="submit" variant="outline">
+                Search
+              </Button>
+            </Field>
           ),
         },
       ],
@@ -328,24 +381,106 @@ export const galleries: Record<string, Gallery[]> = {
 
   textarea: [
     {
-      title: "States",
+      title: "Default",
       demos: [
-        { label: "default", node: <Textarea className="w-64" placeholder="Type here…" /> },
-        { label: "disabled", node: <Textarea className="w-64" disabled placeholder="Disabled" /> },
+        { node: <Textarea placeholder="Type your message here." aria-label="Message" className="w-72" /> },
+      ],
+    },
+    {
+      title: "With label & description",
+      demos: [
+        {
+          node: (
+            <Field className="w-72">
+              <FieldLabel htmlFor="g-ta-msg">Your message</FieldLabel>
+              <Textarea id="g-ta-msg" placeholder="Type your message here." />
+              <FieldDescription>
+                Your message will be copied to the support team.
+              </FieldDescription>
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Disabled",
+      demos: [
+        {
+          node: (
+            <Field data-disabled="true" className="w-72">
+              <FieldLabel htmlFor="g-ta-dis">Your message</FieldLabel>
+              <Textarea id="g-ta-dis" placeholder="Type your message here." disabled />
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Invalid",
+      demos: [
+        {
+          node: (
+            <Field data-invalid="true" className="w-72">
+              <FieldLabel htmlFor="g-ta-inv">Your message</FieldLabel>
+              <Textarea id="g-ta-inv" aria-invalid placeholder="Type your message here." />
+              <FieldError>This field is required.</FieldError>
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "With button",
+      demos: [
+        {
+          node: (
+            <div className="grid w-72 gap-2">
+              <Textarea aria-label="Message" placeholder="Type your message here." />
+              <Button className="w-fit">Send message</Button>
+            </div>
+          ),
+        },
       ],
     },
   ],
 
   label: [
     {
-      title: "Examples",
+      title: "Default",
+      demos: [
+        {
+          node: (
+            <div className="grid w-64 gap-2">
+              <Label htmlFor="g-lb-email">Your email address</Label>
+              <Input id="g-lb-email" type="email" placeholder="name@example.com" />
+            </div>
+          ),
+        },
+      ],
+    },
+    {
+      title: "With checkbox",
       demos: [
         {
           node: (
             <div className="flex items-center gap-2">
-              <Checkbox id="g-terms" />
-              <Label htmlFor="g-terms">Accept terms and conditions</Label>
+              <Checkbox id="g-lb-terms" defaultChecked />
+              <Label htmlFor="g-lb-terms">Accept terms and conditions</Label>
             </div>
+          ),
+        },
+      ],
+    },
+    {
+      title: "In a field",
+      demos: [
+        {
+          node: (
+            <Field className="w-64">
+              <FieldLabel htmlFor="g-lb-name">Username</FieldLabel>
+              <Input id="g-lb-name" placeholder="shadcn" />
+              <FieldDescription>This is your public display name.</FieldDescription>
+            </Field>
           ),
         },
       ],
