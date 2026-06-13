@@ -476,9 +476,10 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "field": {
     figmaNode: "1188-4205",
-    importCode: "import {\n  Field,\n  FieldDescription,\n  FieldError,\n  FieldGroup,\n  FieldLabel,\n} from \"@/components/ui/field\"",
+    importCode: "import {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldError,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSeparator,\n  FieldSet,\n} from \"@/components/ui/field\"",
     usageCode: "<FieldGroup>\n  <Field>\n    <FieldLabel htmlFor=\"email\">Email</FieldLabel>\n    <Input id=\"email\" type=\"email\" />\n    <FieldDescription>We never share it.</FieldDescription>\n  </Field>\n  <Field data-invalid>\n    <FieldLabel htmlFor=\"pw\">Password</FieldLabel>\n    <Input id=\"pw\" type=\"password\" aria-invalid />\n    <FieldError>Required</FieldError>\n  </Field>\n</FieldGroup>",
     props: [
+      { component: "Field", prop: "orientation", type: "\"vertical\" | \"horizontal\" | \"responsive\"", default: "\"vertical\"", description: "Layout direction." },
       { component: "Field", prop: "data-invalid", type: "boolean", default: "—", description: "Marks the field as invalid (styles FieldError)." },
     ],
     tokens: [
@@ -486,7 +487,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { token: "--muted-foreground", value: "text-muted-foreground", usage: "Description", swatch: true },
       { token: "--destructive", value: "text-destructive", usage: "Error text", swatch: true },
     ],
-    a11yNote: "Form-library-agnostic field scaffolding; this project uses it instead of Form.",
+    a11yNote: "Form-library-agnostic field scaffolding; this project uses it instead of Form. Compose with FieldSet/FieldLegend, FieldContent, FieldSeparator.",
   },
   "hover-card": {
     figmaNode: "73-231",
@@ -524,16 +525,16 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "input-group": {
     figmaNode: "1188-5363",
-    importCode: "import {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n} from \"@/components/ui/input-group\"",
+    importCode: "import {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupText,\n  InputGroupTextarea,\n} from \"@/components/ui/input-group\"",
     usageCode: "<InputGroup>\n  <InputGroupAddon><Search className=\"size-4\" /></InputGroupAddon>\n  <InputGroupInput placeholder=\"Search…\" />\n</InputGroup>",
     props: [
-      { component: "InputGroupAddon", prop: "align", type: "\"inline-start\" | \"inline-end\"", default: "\"inline-start\"", description: "Addon position." },
+      { component: "InputGroupAddon", prop: "align", type: "\"inline-start\" | \"inline-end\" | \"block-start\" | \"block-end\"", default: "\"inline-start\"", description: "Addon position." },
     ],
     tokens: [
       { token: "--input", value: "border-input", usage: "Group border", swatch: true },
       { token: "--muted-foreground", value: "text-muted-foreground", usage: "Addon icon", swatch: true },
     ],
-    a11yNote: "Compose inputs with leading/trailing icons, text, or buttons.",
+    a11yNote: "Compose inputs with leading/trailing icons, text, buttons, or a spinner; supports InputGroupTextarea.",
   },
   "input-otp": {
     figmaNode: "101-698",
@@ -541,7 +542,9 @@ export const componentMeta: Record<string, ComponentMeta> = {
     usageCode: "<InputOTP maxLength={6}>\n  <InputOTPGroup>\n    <InputOTPSlot index={0} />\n    <InputOTPSlot index={1} />\n    <InputOTPSlot index={2} />\n  </InputOTPGroup>\n</InputOTP>",
     props: [
       { component: "InputOTP", prop: "maxLength", type: "number", default: "—", description: "Number of slots." },
+      { component: "InputOTP", prop: "pattern", type: "string", default: "—", description: "Allowed-character regex (e.g. REGEXP_ONLY_DIGITS)." },
       { component: "InputOTP", prop: "value", type: "string", default: "—", description: "Controlled value." },
+      { component: "InputOTP", prop: "disabled", type: "boolean", default: "false", description: "Disable the input." },
       { component: "InputOTPSlot", prop: "index", type: "number", default: "—", description: "Slot position." },
     ],
     tokens: [

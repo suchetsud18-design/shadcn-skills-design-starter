@@ -292,11 +292,14 @@ const M = {
   },
   field: {
     figma: "1188-4205",
-    imp: `import {\n  Field,\n  FieldDescription,\n  FieldError,\n  FieldGroup,\n  FieldLabel,\n} from "@/components/ui/field"`,
+    imp: `import {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldError,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSeparator,\n  FieldSet,\n} from "@/components/ui/field"`,
     use: `<FieldGroup>\n  <Field>\n    <FieldLabel htmlFor="email">Email</FieldLabel>\n    <Input id="email" type="email" />\n    <FieldDescription>We never share it.</FieldDescription>\n  </Field>\n  <Field data-invalid>\n    <FieldLabel htmlFor="pw">Password</FieldLabel>\n    <Input id="pw" type="password" aria-invalid />\n    <FieldError>Required</FieldError>\n  </Field>\n</FieldGroup>`,
-    props: [["Field", "data-invalid", "boolean", "—", "Marks the field as invalid (styles FieldError)."]],
+    props: [
+      ["Field", "orientation", `"vertical" | "horizontal" | "responsive"`, `"vertical"`, "Layout direction."],
+      ["Field", "data-invalid", "boolean", "—", "Marks the field as invalid (styles FieldError)."],
+    ],
     tok: [sw("--foreground", "text-foreground", "Label"), sw("--muted-foreground", "text-muted-foreground", "Description"), sw("--destructive", "text-destructive", "Error text")],
-    note: "Form-library-agnostic field scaffolding; this project uses it instead of Form.",
+    note: "Form-library-agnostic field scaffolding; this project uses it instead of Form. Compose with FieldSet/FieldLegend, FieldContent, FieldSeparator.",
   },
   "hover-card": {
     figma: "73-231",
@@ -324,11 +327,11 @@ const M = {
   },
   "input-group": {
     figma: "1188-5363",
-    imp: `import {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n} from "@/components/ui/input-group"`,
+    imp: `import {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupText,\n  InputGroupTextarea,\n} from "@/components/ui/input-group"`,
     use: `<InputGroup>\n  <InputGroupAddon><Search className="size-4" /></InputGroupAddon>\n  <InputGroupInput placeholder="Search…" />\n</InputGroup>`,
-    props: [["InputGroupAddon", "align", `"inline-start" | "inline-end"`, `"inline-start"`, "Addon position."]],
+    props: [["InputGroupAddon", "align", `"inline-start" | "inline-end" | "block-start" | "block-end"`, `"inline-start"`, "Addon position."]],
     tok: [sw("--input", "border-input", "Group border"), sw("--muted-foreground", "text-muted-foreground", "Addon icon")],
-    note: "Compose inputs with leading/trailing icons, text, or buttons.",
+    note: "Compose inputs with leading/trailing icons, text, buttons, or a spinner; supports InputGroupTextarea.",
   },
   "input-otp": {
     figma: "101-698",
@@ -336,7 +339,9 @@ const M = {
     use: `<InputOTP maxLength={6}>\n  <InputOTPGroup>\n    <InputOTPSlot index={0} />\n    <InputOTPSlot index={1} />\n    <InputOTPSlot index={2} />\n  </InputOTPGroup>\n</InputOTP>`,
     props: [
       ["InputOTP", "maxLength", "number", "—", "Number of slots."],
+      ["InputOTP", "pattern", "string", "—", "Allowed-character regex (e.g. REGEXP_ONLY_DIGITS)."],
       ["InputOTP", "value", "string", "—", "Controlled value."],
+      ["InputOTP", "disabled", "boolean", "false", "Disable the input."],
       ["InputOTPSlot", "index", "number", "—", "Slot position."],
     ],
     tok: [sw("--input", "border-input", "Slot border"), sw("--ring", "ring-ring", "Active slot ring")],

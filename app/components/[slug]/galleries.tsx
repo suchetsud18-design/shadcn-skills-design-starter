@@ -32,10 +32,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
-import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldTitle } from "@/components/ui/field"
+import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet, FieldTitle } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group"
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp"
 import { Kbd, KbdGroup } from "@/components/ui/kbd"
 import { Label } from "@/components/ui/label"
 import { NativeSelect, NativeSelectOptGroup, NativeSelectOption } from "@/components/ui/native-select"
@@ -957,11 +957,90 @@ export const galleries: Record<string, Gallery[]> = {
 
   "input-otp": [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
-            <InputOTP maxLength={4}>
+            <InputOTP maxLength={6}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+              </InputOTPGroup>
+              <InputOTPSeparator />
+              <InputOTPGroup>
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Digits only",
+      demos: [
+        {
+          node: (
+            <InputOTP maxLength={6} pattern={"^\\d+$"}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Disabled",
+      demos: [
+        {
+          node: (
+            <InputOTP maxLength={6} disabled>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Invalid",
+      demos: [
+        {
+          node: (
+            <InputOTP maxLength={6} defaultValue="123">
+              <InputOTPGroup>
+                <InputOTPSlot index={0} aria-invalid />
+                <InputOTPSlot index={1} aria-invalid />
+                <InputOTPSlot index={2} aria-invalid />
+                <InputOTPSlot index={3} aria-invalid />
+                <InputOTPSlot index={4} aria-invalid />
+                <InputOTPSlot index={5} aria-invalid />
+              </InputOTPGroup>
+            </InputOTP>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Four digits",
+      demos: [
+        {
+          node: (
+            <InputOTP maxLength={4} pattern={"^\\d+$"}>
               <InputOTPGroup>
                 <InputOTPSlot index={0} />
                 <InputOTPSlot index={1} />
@@ -1200,28 +1279,120 @@ export const galleries: Record<string, Gallery[]> = {
 
   field: [
     {
-      title: "States",
+      title: "Input",
       demos: [
         {
-          label: "default",
           node: (
             <FieldGroup className="w-64">
               <Field>
-                <FieldLabel htmlFor="g-f1">Username</FieldLabel>
-                <Input id="g-f1" placeholder="shadcn" />
-                <FieldDescription>Your public display name.</FieldDescription>
+                <FieldLabel htmlFor="g-fi-user">Username</FieldLabel>
+                <Input id="g-fi-user" placeholder="shadcn" />
+                <FieldDescription>This is your public display name.</FieldDescription>
               </Field>
             </FieldGroup>
           ),
         },
+      ],
+    },
+    {
+      title: "Textarea",
+      demos: [
         {
-          label: "invalid",
+          node: (
+            <FieldGroup className="w-72">
+              <Field>
+                <FieldLabel htmlFor="g-fi-fb">Feedback</FieldLabel>
+                <Textarea id="g-fi-fb" placeholder="Tell us what you think…" />
+                <FieldDescription>Share your thoughts with the team.</FieldDescription>
+              </Field>
+            </FieldGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Select",
+      demos: [
+        {
           node: (
             <FieldGroup className="w-64">
-              <Field data-invalid>
-                <FieldLabel htmlFor="g-f2">Email</FieldLabel>
-                <Input id="g-f2" aria-invalid defaultValue="not-an-email" />
-                <FieldError>Enter a valid email.</FieldError>
+              <Field>
+                <FieldLabel htmlFor="g-fi-dept">Department</FieldLabel>
+                <Select>
+                  <SelectTrigger id="g-fi-dept" className="w-full">
+                    <SelectValue placeholder="Select a department" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="eng">Engineering</SelectItem>
+                    <SelectItem value="design">Design</SelectItem>
+                    <SelectItem value="sales">Sales</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FieldDescription>Choose your primary team.</FieldDescription>
+              </Field>
+            </FieldGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Fieldset",
+      demos: [
+        {
+          node: (
+            <FieldSet className="w-72">
+              <FieldLegend>Address</FieldLegend>
+              <FieldGroup>
+                <Field>
+                  <FieldLabel htmlFor="g-fi-street">Street</FieldLabel>
+                  <Input id="g-fi-street" placeholder="123 Main St" />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor="g-fi-city">City</FieldLabel>
+                  <Input id="g-fi-city" placeholder="Bangkok" />
+                </Field>
+              </FieldGroup>
+            </FieldSet>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Field group",
+      demos: [
+        {
+          node: (
+            <FieldGroup className="w-72">
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel htmlFor="g-fi-news">Newsletter</FieldLabel>
+                  <FieldDescription>Receive product updates.</FieldDescription>
+                </FieldContent>
+                <Switch id="g-fi-news" defaultChecked />
+              </Field>
+              <FieldSeparator />
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldLabel htmlFor="g-fi-marketing">Marketing emails</FieldLabel>
+                  <FieldDescription>Occasional offers and news.</FieldDescription>
+                </FieldContent>
+                <Switch id="g-fi-marketing" />
+              </Field>
+            </FieldGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Validation",
+      demos: [
+        {
+          node: (
+            <FieldGroup className="w-64">
+              <Field data-invalid="true">
+                <FieldLabel htmlFor="g-fi-email">Email</FieldLabel>
+                <Input id="g-fi-email" type="email" aria-invalid defaultValue="not-an-email" />
+                <FieldError>Enter a valid email address.</FieldError>
               </Field>
             </FieldGroup>
           ),
@@ -1232,13 +1403,78 @@ export const galleries: Record<string, Gallery[]> = {
 
   "input-group": [
     {
-      title: "Examples",
+      title: "Icon",
       demos: [
         {
           node: (
             <InputGroup className="w-64">
-              <InputGroupAddon><Search className="size-4" /></InputGroupAddon>
+              <InputGroupAddon>
+                <Search className="size-4" />
+              </InputGroupAddon>
               <InputGroupInput placeholder="Search…" />
+            </InputGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Text",
+      demos: [
+        {
+          node: (
+            <InputGroup className="w-64">
+              <InputGroupAddon>
+                <InputGroupText>$</InputGroupText>
+              </InputGroupAddon>
+              <InputGroupInput placeholder="0.00" />
+              <InputGroupAddon align="inline-end">
+                <InputGroupText>USD</InputGroupText>
+              </InputGroupAddon>
+            </InputGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Button",
+      demos: [
+        {
+          node: (
+            <InputGroup className="w-72">
+              <InputGroupInput placeholder="Search…" />
+              <InputGroupAddon align="inline-end">
+                <InputGroupButton>Search</InputGroupButton>
+              </InputGroupAddon>
+            </InputGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Spinner",
+      demos: [
+        {
+          node: (
+            <InputGroup className="w-64">
+              <InputGroupInput placeholder="Loading…" disabled />
+              <InputGroupAddon align="inline-end">
+                <Spinner className="size-4" />
+              </InputGroupAddon>
+            </InputGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Textarea",
+      demos: [
+        {
+          node: (
+            <InputGroup className="w-72">
+              <InputGroupTextarea placeholder="Add a comment…" />
+              <InputGroupAddon align="block-end">
+                <InputGroupButton>Send</InputGroupButton>
+              </InputGroupAddon>
             </InputGroup>
           ),
         },
