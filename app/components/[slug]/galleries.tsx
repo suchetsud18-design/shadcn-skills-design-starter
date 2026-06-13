@@ -32,7 +32,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
+import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldTitle } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
@@ -354,47 +354,297 @@ export const galleries: Record<string, Gallery[]> = {
 
   checkbox: [
     {
-      title: "States",
+      title: "Default",
       demos: [
-        { label: "unchecked", node: <Checkbox aria-label="unchecked" /> },
-        { label: "checked", node: <Checkbox defaultChecked aria-label="checked" /> },
-        { label: "disabled", node: <Checkbox disabled aria-label="disabled" /> },
-        { label: "disabled checked", node: <Checkbox disabled defaultChecked aria-label="disabled checked" /> },
+        {
+          node: (
+            <div className="flex items-center gap-2">
+              <Checkbox id="g-cb-terms" defaultChecked />
+              <Label htmlFor="g-cb-terms">Accept terms and conditions</Label>
+            </div>
+          ),
+        },
+      ],
+    },
+    {
+      title: "With description",
+      demos: [
+        {
+          node: (
+            <Field orientation="horizontal" className="max-w-sm">
+              <Checkbox id="g-cb-notify" defaultChecked />
+              <FieldContent>
+                <FieldLabel htmlFor="g-cb-notify">Enable notifications</FieldLabel>
+                <FieldDescription>
+                  Receive emails about your account activity.
+                </FieldDescription>
+              </FieldContent>
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Disabled",
+      demos: [
+        {
+          node: (
+            <Field orientation="horizontal" data-disabled="true" className="max-w-sm">
+              <Checkbox id="g-cb-dis" disabled />
+              <FieldLabel htmlFor="g-cb-dis">Accept terms and conditions</FieldLabel>
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Invalid",
+      demos: [
+        {
+          node: (
+            <Field orientation="horizontal" data-invalid="true" className="max-w-sm">
+              <Checkbox id="g-cb-inv" aria-invalid />
+              <FieldLabel htmlFor="g-cb-inv">Accept terms and conditions</FieldLabel>
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Group",
+      demos: [
+        {
+          node: (
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <Checkbox id="g-cb-finder" defaultChecked />
+                <Label htmlFor="g-cb-finder">Finder</Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <Checkbox id="g-cb-disks" />
+                <Label htmlFor="g-cb-disks">Hard disks</Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <Checkbox id="g-cb-servers" defaultChecked />
+                <Label htmlFor="g-cb-servers">Connected servers</Label>
+              </div>
+            </div>
+          ),
+        },
       ],
     },
   ],
 
   switch: [
     {
-      title: "States",
+      title: "Default",
       demos: [
-        { label: "off", node: <Switch aria-label="off" /> },
-        { label: "on", node: <Switch defaultChecked aria-label="on" /> },
-        { label: "disabled", node: <Switch disabled aria-label="disabled" /> },
-        { label: "disabled on", node: <Switch disabled defaultChecked aria-label="disabled on" /> },
+        {
+          node: (
+            <div className="flex items-center gap-2">
+              <Switch id="g-sw-airplane" defaultChecked />
+              <Label htmlFor="g-sw-airplane">Airplane Mode</Label>
+            </div>
+          ),
+        },
+      ],
+    },
+    {
+      title: "With description",
+      demos: [
+        {
+          node: (
+            <Field orientation="horizontal" className="max-w-sm">
+              <FieldContent>
+                <FieldLabel htmlFor="g-sw-share">Share across devices</FieldLabel>
+                <FieldDescription>
+                  Focus is shared across devices and turns off when you leave.
+                </FieldDescription>
+              </FieldContent>
+              <Switch id="g-sw-share" defaultChecked />
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Choice card",
+      demos: [
+        {
+          node: (
+            <FieldLabel htmlFor="g-sw-card" className="max-w-sm">
+              <Field orientation="horizontal">
+                <FieldContent>
+                  <FieldTitle>Share across devices</FieldTitle>
+                  <FieldDescription>
+                    Focus is shared across devices.
+                  </FieldDescription>
+                </FieldContent>
+                <Switch id="g-sw-card" defaultChecked />
+              </Field>
+            </FieldLabel>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Disabled",
+      demos: [
+        {
+          node: (
+            <Field orientation="horizontal" data-disabled="true" className="max-w-sm">
+              <FieldContent>
+                <FieldLabel htmlFor="g-sw-dis">Share across devices</FieldLabel>
+              </FieldContent>
+              <Switch id="g-sw-dis" disabled />
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Invalid",
+      demos: [
+        {
+          node: (
+            <Field orientation="horizontal" data-invalid="true" className="max-w-sm">
+              <FieldContent>
+                <FieldLabel htmlFor="g-sw-inv">Accept terms and conditions</FieldLabel>
+              </FieldContent>
+              <Switch id="g-sw-inv" aria-invalid />
+            </Field>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Size",
+      demos: [
+        { label: "sm", node: <Switch size="sm" defaultChecked aria-label="small" /> },
+        { label: "default", node: <Switch defaultChecked aria-label="default" /> },
       ],
     },
   ],
 
   "radio-group": [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
-            <RadioGroup defaultValue="comfortable" className="gap-2">
+            <RadioGroup defaultValue="comfortable">
               <div className="flex items-center gap-2">
-                <RadioGroupItem value="default" id="g-r1" />
-                <Label htmlFor="g-r1">Default</Label>
+                <RadioGroupItem value="default" id="g-rg-d" />
+                <Label htmlFor="g-rg-d">Default</Label>
               </div>
               <div className="flex items-center gap-2">
-                <RadioGroupItem value="comfortable" id="g-r2" />
-                <Label htmlFor="g-r2">Comfortable</Label>
+                <RadioGroupItem value="comfortable" id="g-rg-c" />
+                <Label htmlFor="g-rg-c">Comfortable</Label>
               </div>
               <div className="flex items-center gap-2">
-                <RadioGroupItem value="compact" id="g-r3" disabled />
-                <Label htmlFor="g-r3">Compact (disabled)</Label>
+                <RadioGroupItem value="compact" id="g-rg-cp" />
+                <Label htmlFor="g-rg-cp">Compact</Label>
               </div>
+            </RadioGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "With description",
+      demos: [
+        {
+          node: (
+            <RadioGroup defaultValue="comfortable" className="max-w-sm">
+              <Field orientation="horizontal">
+                <RadioGroupItem value="default" id="g-rgd-1" />
+                <FieldContent>
+                  <FieldLabel htmlFor="g-rgd-1">Default</FieldLabel>
+                  <FieldDescription>
+                    Standard spacing for most layouts.
+                  </FieldDescription>
+                </FieldContent>
+              </Field>
+              <Field orientation="horizontal">
+                <RadioGroupItem value="compact" id="g-rgd-2" />
+                <FieldContent>
+                  <FieldLabel htmlFor="g-rgd-2">Compact</FieldLabel>
+                  <FieldDescription>
+                    Reduced spacing to fit more content.
+                  </FieldDescription>
+                </FieldContent>
+              </Field>
+            </RadioGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Choice card",
+      demos: [
+        {
+          node: (
+            <RadioGroup defaultValue="pro" className="max-w-sm gap-3">
+              <FieldLabel htmlFor="g-rgc-plus">
+                <Field orientation="horizontal">
+                  <FieldContent>
+                    <FieldTitle>Plus</FieldTitle>
+                    <FieldDescription>
+                      For individuals getting started.
+                    </FieldDescription>
+                  </FieldContent>
+                  <RadioGroupItem value="plus" id="g-rgc-plus" />
+                </Field>
+              </FieldLabel>
+              <FieldLabel htmlFor="g-rgc-pro">
+                <Field orientation="horizontal">
+                  <FieldContent>
+                    <FieldTitle>Pro</FieldTitle>
+                    <FieldDescription>For growing teams.</FieldDescription>
+                  </FieldContent>
+                  <RadioGroupItem value="pro" id="g-rgc-pro" />
+                </Field>
+              </FieldLabel>
+            </RadioGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Disabled",
+      demos: [
+        {
+          node: (
+            <RadioGroup defaultValue="default">
+              <div className="flex items-center gap-2">
+                <RadioGroupItem value="default" id="g-rgdis-1" />
+                <Label htmlFor="g-rgdis-1">Default</Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <RadioGroupItem value="compact" id="g-rgdis-2" disabled />
+                <Label htmlFor="g-rgdis-2" className="opacity-50">
+                  Compact (disabled)
+                </Label>
+              </div>
+            </RadioGroup>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Invalid",
+      demos: [
+        {
+          node: (
+            <RadioGroup defaultValue="all" className="max-w-sm">
+              <Field orientation="horizontal" data-invalid="true">
+                <RadioGroupItem value="all" id="g-rginv-1" aria-invalid />
+                <FieldLabel htmlFor="g-rginv-1">All notifications</FieldLabel>
+              </Field>
+              <Field orientation="horizontal" data-invalid="true">
+                <RadioGroupItem value="none" id="g-rginv-2" aria-invalid />
+                <FieldLabel htmlFor="g-rginv-2">No notifications</FieldLabel>
+              </Field>
             </RadioGroup>
           ),
         },

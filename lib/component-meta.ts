@@ -274,6 +274,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { component: "Checkbox", prop: "checked", type: "boolean | \"indeterminate\"", default: "—", description: "Controlled checked state." },
       { component: "Checkbox", prop: "onCheckedChange", type: "(checked) => void", default: "—", description: "Change handler." },
       { component: "Checkbox", prop: "disabled", type: "boolean", default: "false", description: "Disable the control." },
+      { component: "Checkbox", prop: "aria-invalid", type: "boolean", default: "false", description: "Mark invalid for error styling." },
     ],
     tokens: [
       { token: "--primary", value: "bg-primary", usage: "Checked fill", swatch: true },
@@ -281,7 +282,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { token: "--input", value: "border-input", usage: "Unchecked border", swatch: true },
       { token: "--ring", value: "ring-ring", usage: "Focus ring", swatch: true },
     ],
-    a11yNote: "Pair with a Label via htmlFor.",
+    a11yNote: "Pair with a Label via htmlFor; compose with Field/FieldDescription for helper text.",
     a11y: [
       { keys: "Space", action: "Toggle checked" },
       { keys: "Tab", action: "Move focus" },
@@ -703,13 +704,15 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { component: "RadioGroup", prop: "value", type: "string", default: "—", description: "Controlled selected value." },
       { component: "RadioGroup", prop: "defaultValue", type: "string", default: "—", description: "Initial value (uncontrolled)." },
       { component: "RadioGroupItem", prop: "value", type: "string", default: "—", description: "This item's value." },
+      { component: "RadioGroupItem", prop: "disabled", type: "boolean", default: "false", description: "Disable this item." },
+      { component: "RadioGroupItem", prop: "aria-invalid", type: "boolean", default: "false", description: "Mark invalid for error styling." },
     ],
     tokens: [
       { token: "--primary", value: "text-primary", usage: "Selected dot", swatch: true },
       { token: "--input", value: "border-input", usage: "Ring border", swatch: true },
       { token: "--ring", value: "ring-ring", usage: "Focus ring", swatch: true },
     ],
-    a11yNote: "Arrow keys move and select within the group; only one item is checked.",
+    a11yNote: "Arrow keys move and select within the group; only one item is checked. Compose with Field for descriptions / choice cards.",
     a11y: [
       { keys: "↑ / ↓", action: "Move selection" },
       { keys: "Space", action: "Select focused" },
@@ -863,13 +866,15 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { component: "Switch", prop: "checked", type: "boolean", default: "—", description: "Controlled on/off state." },
       { component: "Switch", prop: "onCheckedChange", type: "(checked) => void", default: "—", description: "Change handler." },
       { component: "Switch", prop: "disabled", type: "boolean", default: "false", description: "Disable the control." },
+      { component: "Switch", prop: "size", type: "\"sm\" | \"default\"", default: "\"default\"", description: "Control size." },
+      { component: "Switch", prop: "aria-invalid", type: "boolean", default: "false", description: "Mark invalid for error styling." },
     ],
     tokens: [
       { token: "--primary", value: "bg-primary", usage: "On track", swatch: true },
       { token: "--input", value: "bg-input", usage: "Off track", swatch: true },
       { token: "--background", value: "bg-background", usage: "Thumb", swatch: true },
     ],
-    a11yNote: "Toggles immediately (no submit). Pair with a Label.",
+    a11yNote: "Toggles immediately (no submit). Pair with a Label; compose with Field for descriptions.",
     a11y: [
       { keys: "Space / Enter", action: "Toggle state" },
     ],
