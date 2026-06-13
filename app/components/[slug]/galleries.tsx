@@ -1087,7 +1087,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   breadcrumb: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -1114,7 +1114,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   pagination: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -2132,7 +2132,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   "navigation-menu": [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -2291,7 +2291,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   sidebar: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
