@@ -204,27 +204,48 @@ export type Gallery = { title: string; description?: string; demos: GalleryDemo[
 export const galleries: Record<string, Gallery[]> = {
   accordion: [
     {
-      title: "States",
-      description: "Collapsed and expanded, with chevron rotation.",
+      title: "Default",
       demos: [
         {
-          label: "Collapsed",
           node: (
-            <Accordion type="single" collapsible className="w-64">
-              <AccordionItem value="a">
-                <AccordionTrigger>Product Information</AccordionTrigger>
-                <AccordionContent>Sleek design, cutting-edge tech.</AccordionContent>
+            <Accordion type="single" collapsible defaultValue="item-1" className="w-80">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Is it styled?</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It comes with default styles that match the design system.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger>Is it animated?</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It&apos;s animated by default, but you can disable it.
+                </AccordionContent>
               </AccordionItem>
             </Accordion>
           ),
         },
+      ],
+    },
+    {
+      title: "Multiple",
+      description: "Allow several items to stay open with type=\"multiple\".",
+      demos: [
         {
-          label: "Expanded",
           node: (
-            <Accordion type="single" collapsible defaultValue="a" className="w-64">
-              <AccordionItem value="a">
-                <AccordionTrigger>Product Information</AccordionTrigger>
-                <AccordionContent>Sleek design, cutting-edge tech.</AccordionContent>
+            <Accordion type="multiple" defaultValue={["item-1", "item-2"]} className="w-80">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>First section</AccordionTrigger>
+                <AccordionContent>This stays open independently.</AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Second section</AccordionTrigger>
+                <AccordionContent>So does this one.</AccordionContent>
               </AccordionItem>
             </Accordion>
           ),
@@ -1494,7 +1515,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   empty: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -1540,7 +1561,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   card: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -1565,7 +1586,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   tabs: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -1643,12 +1664,14 @@ export const galleries: Record<string, Gallery[]> = {
   ],
 
   calendar: [
-    { title: "Example", demos: [{ node: <Calendar mode="single" className="rounded-md border" /> }] },
+    { title: "Default", demos: [{ node: <Calendar mode="single" className="rounded-md border" /> }] },
+    { title: "Range", description: "Select a start and end date across two months.", demos: [{ node: <Calendar mode="range" numberOfMonths={2} className="rounded-md border" /> }] },
+    { title: "Multiple", description: "Select several individual dates.", demos: [{ node: <Calendar mode="multiple" className="rounded-md border" /> }] },
   ],
 
   carousel: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -1659,6 +1682,31 @@ export const galleries: Record<string, Gallery[]> = {
                     <Card>
                       <CardContent className="flex aspect-square items-center justify-center p-6">
                         <span className="text-3xl font-semibold">{i + 1}</span>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Sizes",
+      description: "Show partial items with item basis utilities.",
+      demos: [
+        {
+          node: (
+            <Carousel className="w-full max-w-sm">
+              <CarouselContent>
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <CarouselItem key={i} className="basis-1/3">
+                    <Card>
+                      <CardContent className="flex aspect-square items-center justify-center p-4">
+                        <span className="text-2xl font-semibold">{i + 1}</span>
                       </CardContent>
                     </Card>
                   </CarouselItem>
@@ -1682,7 +1730,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   collapsible: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -1790,7 +1838,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   "data-table": [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -2171,7 +2219,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   "scroll-area": [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -2266,7 +2314,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   table: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
