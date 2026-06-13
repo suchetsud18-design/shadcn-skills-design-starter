@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Storybook build output + the external (cloned, git-ignored) Figma tool.
+    "storybook-static/**",
+    "figma-rest-api/**",
   ]),
 ]);
 

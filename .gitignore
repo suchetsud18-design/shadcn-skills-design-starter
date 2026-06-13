@@ -45,3 +45,12 @@ next-env.d.ts
 
 # external Figma tool — clone it yourself: git clone https://github.com/plugin87/figma-rest-api
 /figma-rest-api
+
+# storybook build output
+/storybook-static
+
+# playwright-cli snapshots / console logs (browser automation artifacts)
+/.playwright-cli
+
+*storybook.log
+storybook-static
