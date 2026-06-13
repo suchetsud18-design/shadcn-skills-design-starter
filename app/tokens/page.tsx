@@ -1,6 +1,9 @@
 import { ColorTokens } from "@/components/color-tokens"
+import { TailwindPalette } from "@/components/tailwind-palette"
+import { RadixPalette } from "@/components/radix-palette"
 import { allColorTokens } from "@/lib/tokens"
 import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 
 export const metadata = { title: "Color Tokens — Docs Design" }
 
@@ -23,6 +26,14 @@ export default function TokensPage() {
       </header>
 
       <ColorTokens />
+
+      <Separator />
+
+      <TailwindPalette />
+
+      <Separator />
+
+      <RadixPalette />
     </div>
   )
 }

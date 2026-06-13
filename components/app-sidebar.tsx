@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Book, BookOpen, Component, Palette } from "lucide-react"
+import { Book, BookOpen, Component, Maximize, Palette, Ruler, Sparkles, Type } from "lucide-react"
 
 import { componentDocs } from "@/lib/docs"
 import {
@@ -51,6 +51,38 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Link href="/tokens">
                     <Palette className="size-4" />
                     <span>Colors</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === "/spacing"}>
+                  <Link href="/spacing">
+                    <Ruler className="size-4" />
+                    <span>Spacing</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === "/effects"}>
+                  <Link href="/effects">
+                    <Sparkles className="size-4" />
+                    <span>Effects</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === "/typography"}>
+                  <Link href="/typography">
+                    <Type className="size-4" />
+                    <span>Typography</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === "/sizing"}>
+                  <Link href="/sizing">
+                    <Maximize className="size-4" />
+                    <span>Sizing &amp; Layout</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

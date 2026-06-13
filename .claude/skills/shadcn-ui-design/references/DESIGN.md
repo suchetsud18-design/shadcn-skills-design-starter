@@ -2623,13 +2623,19 @@ input:          px-3 py-2
 
 ## 14. Shadow & Elevation
 
+> Tailwind v4 scale. The shadow utilities were renamed in v4 — there is **no bare `shadow`**
+> (use `shadow-sm`), and the smallest steps are `shadow-2xs` / `shadow-xs`. The new-york
+> preset uses `shadow-xs` as the default control elevation.
 
 ```
-shadow-sm   — subtle lift (input, inactive card)
-shadow      — default elevation (card, dropdown)
-shadow-md   — modal, popover
+shadow-2xs  — hairline lift
+shadow-xs   — input, button (default control)
+shadow-sm   — card, inactive surface
+shadow-md   — dropdown, popover
 shadow-lg   — dialog, sidebar flyout
 shadow-xl   — high-priority overlay
+shadow-2xl  — max elevation
+shadow-none — flat / remove elevation
 ```
 
 ---
