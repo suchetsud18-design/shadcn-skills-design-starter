@@ -10,6 +10,15 @@ description: Build UI components and layouts with shadcn/ui + Tailwind CSS v4 on
 > **Source of truth:** [`DESIGN.md`](./references/DESIGN.md) — tokens, spacing, typography, component rules all live there
 > SKILL.md = how to do it | DESIGN.md = standards to follow
 
+### References
+
+| File | Read it when |
+|---|---|
+| [`references/DESIGN.md`](./references/DESIGN.md) | **Always.** Tokens, type, spacing, radius, palettes, component rules, dark mode — the source of truth. |
+| [`references/TASTE.md`](./references/TASTE.md) | Building a page/section or anything visual — to make it look intentional, not templated (the anti-slop doctrine). |
+| [`references/A11Y.md`](./references/A11Y.md) | Verifying accessibility — the testable WCAG 2.2 POUR checklist behind §6. |
+| [`references/UX-WRITING.md`](./references/UX-WRITING.md) | Writing any UI copy — labels, errors, empty states, toasts, microcopy. |
+
 ---
 
 ## 0. Before You Start
@@ -19,6 +28,10 @@ Before building any UI, answer these 3 questions:
 1. **Does the component already exist in shadcn?** → If yes, use it — don't build from scratch
 2. **Does it need interactivity?** → If no, use a Server Component; if yes, add `"use client"`
 3. **Are colors and spacing using the correct tokens?** → Never hardcode colors outside the design system
+
+For visual polish consult [`references/TASTE.md`](./references/TASTE.md); for copy
+[`references/UX-WRITING.md`](./references/UX-WRITING.md); to verify a11y
+[`references/A11Y.md`](./references/A11Y.md).
 
 ---
 
@@ -187,46 +200,39 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 </Card>
 ```
 
-### 3.4 Form — standard pattern
+### 3.4 Field — standard form pattern
+> This project installs `field` (not `form`/react-hook-form). Compose `Field` with the
+> input primitives; use `FieldError` + `aria-invalid` for the error state.
+
 ```tsx
-"use client"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Field, FieldGroup, FieldLabel, FieldDescription, FieldError } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-const schema = z.object({
-  email: z.string().email("Invalid email format"),
-})
-
 export function ExampleForm() {
-  const form = useForm({ resolver: zodResolver(schema) })
-
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit((data) => console.log(data))} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="name@example.com" {...field} />
-              </FormControl>
-              <FormDescription>Email used for signing in</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+    <form className="space-y-4">
+      <FieldGroup>
+        <Field>
+          <FieldLabel htmlFor="email">Email</FieldLabel>
+          <Input id="email" type="email" placeholder="name@example.com" />
+          <FieldDescription>Email used for signing in</FieldDescription>
+        </Field>
+        <Field data-invalid>
+          <FieldLabel htmlFor="password">Password</FieldLabel>
+          <Input id="password" type="password" aria-invalid />
+          <FieldError>Password is required</FieldError>
+        </Field>
+      </FieldGroup>
+      <Button type="submit">Submit</Button>
+    </form>
   )
 }
 ```
+
+For client-side validation, keep this markup and drive `aria-invalid` + `FieldError`
+from your own state (`useState`) or a library of your choice — the `Field` primitives are
+form-library-agnostic.
 
 ### 3.5 Dialog — confirmation / form modal
 ```tsx
@@ -535,7 +541,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 pnpm dlx shadcn@latest add navigation-menu breadcrumb sidebar
 
 # Forms
-pnpm dlx shadcn@latest add form input textarea select checkbox radio-group switch slider label
+pnpm dlx shadcn@latest add field input textarea select checkbox radio-group switch slider label
 
 # Data display
 pnpm dlx shadcn@latest add table badge avatar skeleton progress chart
@@ -587,7 +593,7 @@ export function CustomCard({ highlighted, className, children, ...props }: Custo
 | Button | `Button` | `add button` |
 | Input text | `Input` | `add input` |
 | Dropdown list | `Select` | `add select` |
-| Search + filter | `Combobox` | `add combobox` |
+| Search + filter | `Combobox` | `add popover command` (composed — no `combobox` to add) |
 | Date picker | `Calendar` + `Popover` | `add calendar popover` |
 | Table | `Table` | `add table` |
 | Modal | `Dialog` | `add dialog` |
@@ -608,7 +614,7 @@ export function CustomCard({ highlighted, className, children, ...props }: Custo
 | Data chart | `Chart` | `add chart` |
 | OTP input | `InputOTP` | `add input-otp` |
 | Progress bar | `Progress` | `add progress` |
-| Resizable pane | `Resizable` | `add resizable` |
+| Form field | `Field` | `add field` |
 
 ---
 
