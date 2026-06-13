@@ -1,4 +1,5 @@
 // The project's 35 semantic color tokens, grouped for the Colors documentation.
+// 31 are active; the 4 in the "Reserved" group are defined but not yet used.
 // Values are read live from CSS variables so the swatches reflect the active
 // theme (Brand / Neutral · light / dark).
 
@@ -60,8 +61,9 @@ export const colorTokenGroups: ColorTokenGroup[] = [
     ],
   },
   {
-    name: "Semantic",
-    description: "Overlay scrim and stone-toned semantic surfaces.",
+    name: "Reserved",
+    description:
+      "Experimental tokens for a future overlay scrim + stone-toned surfaces. Defined in every theme but not yet consumed by any component.",
     tokens: ["background-color", "semantic-background", "semantic-border", "semantic-foreground"],
   },
 ]

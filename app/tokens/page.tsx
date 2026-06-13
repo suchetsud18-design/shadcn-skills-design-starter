@@ -14,9 +14,10 @@ export default function TokensPage() {
         <p className="text-sm font-medium text-muted-foreground">Design Tokens</p>
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">Colors</h1>
         <p className="max-w-2xl text-lg text-muted-foreground">
-          The {allColorTokens.length} semantic color tokens that drive the UI. Values are read
-          live from CSS variables — toggle the theme (top-right) and the swatches update. Click
-          any swatch to copy its <code className="font-mono text-base">var(--token)</code>.
+          The {allColorTokens.length} semantic color tokens in the system — 31 drive the UI and
+          4 (the <b>Reserved</b> group) are defined for future use. Values are read live from CSS
+          variables — toggle the theme (top-right) and the swatches update. Click any swatch to
+          copy its <code className="font-mono text-base">var(--token)</code>.
         </p>
         <div className="flex flex-wrap gap-2 pt-1">
           <Badge variant="secondary">Brand / Neutral</Badge>

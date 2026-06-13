@@ -27,6 +27,11 @@
 > The 35 semantic tokens for this project's **brand theme** — cream + charcoal surfaces with an
 > orange (`#d97757`) primary. These are the source of truth; edit values here **and** in
 > `app/globals.css` / `assets/globals.css` together (kept in sync by hand).
+>
+> **Note:** 31 of the 35 are active. The 4 **reserved** tokens — `--background-color` (overlay
+> scrim) and `--semantic-background` / `--semantic-border` / `--semantic-foreground` (stone-toned
+> surfaces) — are defined in every theme but **not yet consumed by any component**. Treat them as
+> experimental until something uses them.
 
 ```css
 /* globals.css — Light mode */
