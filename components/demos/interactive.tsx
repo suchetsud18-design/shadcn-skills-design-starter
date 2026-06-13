@@ -3,7 +3,18 @@
 import * as React from "react"
 import { format } from "date-fns"
 import { type DateRange } from "react-day-picker"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  XAxis,
+} from "recharts"
 import { Check, ChevronsUpDown, CalendarIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -43,6 +54,56 @@ export function SonnerDemo() {
   )
 }
 
+/* Toast variants — success / info / warning / error / action / promise / description */
+export function SonnerVariantsDemo() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button variant="outline" onClick={() => toast.success("Changes saved")}>
+        Success
+      </Button>
+      <Button variant="outline" onClick={() => toast.info("A new update is available")}>
+        Info
+      </Button>
+      <Button variant="outline" onClick={() => toast.warning("Your trial ends in 3 days")}>
+        Warning
+      </Button>
+      <Button variant="outline" onClick={() => toast.error("Something went wrong")}>
+        Error
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          toast("Event created", { description: "Sunday, December 03 at 9:00 AM" })
+        }
+      >
+        Description
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          toast("Event created", {
+            action: { label: "Undo", onClick: () => toast("Undone") },
+          })
+        }
+      >
+        Action
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          toast.promise(new Promise((resolve) => setTimeout(resolve, 1500)), {
+            loading: "Saving…",
+            success: "Saved",
+            error: "Could not save",
+          })
+        }
+      >
+        Promise
+      </Button>
+    </div>
+  )
+}
+
 /* ------------------------------------------------------------------ chart */
 
 const chartData = [
@@ -72,6 +133,74 @@ export function ChartDemo() {
         <ChartTooltip content={<ChartTooltipContent />} />
         <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
       </BarChart>
+    </ChartContainer>
+  )
+}
+
+/* Line chart */
+export function LineChartDemo() {
+  return (
+    <ChartContainer config={chartConfig} className="h-[260px] w-full max-w-xl">
+      <LineChart accessibilityLayer data={chartData} margin={{ left: 12, right: 12 }}>
+        <CartesianGrid vertical={false} />
+        <XAxis
+          dataKey="month"
+          tickLine={false}
+          tickMargin={10}
+          axisLine={false}
+          tickFormatter={(v) => v.slice(0, 3)}
+        />
+        <ChartTooltip content={<ChartTooltipContent />} />
+        <Line dataKey="desktop" type="natural" stroke="var(--color-desktop)" strokeWidth={2} dot={false} />
+      </LineChart>
+    </ChartContainer>
+  )
+}
+
+/* Area chart */
+export function AreaChartDemo() {
+  return (
+    <ChartContainer config={chartConfig} className="h-[260px] w-full max-w-xl">
+      <AreaChart accessibilityLayer data={chartData} margin={{ left: 12, right: 12 }}>
+        <CartesianGrid vertical={false} />
+        <XAxis
+          dataKey="month"
+          tickLine={false}
+          tickMargin={10}
+          axisLine={false}
+          tickFormatter={(v) => v.slice(0, 3)}
+        />
+        <ChartTooltip content={<ChartTooltipContent />} />
+        <Area dataKey="desktop" type="natural" fill="var(--color-desktop)" fillOpacity={0.4} stroke="var(--color-desktop)" />
+      </AreaChart>
+    </ChartContainer>
+  )
+}
+
+/* Pie chart */
+const pieData = [
+  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
+  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
+  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+]
+const pieConfig = {
+  visitors: { label: "Visitors" },
+  chrome: { label: "Chrome", color: "var(--chart-1)" },
+  safari: { label: "Safari", color: "var(--chart-2)" },
+  firefox: { label: "Firefox", color: "var(--chart-3)" },
+  edge: { label: "Edge", color: "var(--chart-4)" },
+  other: { label: "Other", color: "var(--chart-5)" },
+} satisfies ChartConfig
+
+export function PieChartDemo() {
+  return (
+    <ChartContainer config={pieConfig} className="mx-auto aspect-square h-[260px]">
+      <PieChart>
+        <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+        <Pie data={pieData} dataKey="visitors" nameKey="browser" />
+      </PieChart>
     </ChartContainer>
   )
 }

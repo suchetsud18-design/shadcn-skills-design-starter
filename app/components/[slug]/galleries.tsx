@@ -167,6 +167,9 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import {
   ChartDemo,
+  LineChartDemo,
+  AreaChartDemo,
+  PieChartDemo,
   ComboboxDemo,
   DatePickerDemo,
   DatePickerRangeDemo,
@@ -174,6 +177,7 @@ import {
   DatePickerInputDemo,
   DatePickerDateTimeDemo,
   SonnerDemo,
+  SonnerVariantsDemo,
 } from "@/components/demos/interactive"
 
 export type GalleryDemo = { label?: string; node: ReactNode }
@@ -901,7 +905,12 @@ export const galleries: Record<string, Gallery[]> = {
     },
   ],
 
-  chart: [{ title: "Example", demos: [{ node: <div className="w-full max-w-md"><ChartDemo /></div> }] }],
+  chart: [
+    { title: "Bar Chart", description: "Categorical data as vertical bars.", demos: [{ node: <div className="w-full max-w-xl"><ChartDemo /></div> }] },
+    { title: "Line Chart", description: "A trend across continuous points.", demos: [{ node: <div className="w-full max-w-xl"><LineChartDemo /></div> }] },
+    { title: "Area Chart", description: "A filled trend showing volume.", demos: [{ node: <div className="w-full max-w-xl"><AreaChartDemo /></div> }] },
+    { title: "Pie Chart", description: "Proportional parts of a whole.", demos: [{ node: <PieChartDemo /> }] },
+  ],
 
   collapsible: [
     {
@@ -1344,7 +1353,10 @@ export const galleries: Record<string, Gallery[]> = {
     },
   ],
 
-  sonner: [{ title: "Example", demos: [{ node: <SonnerDemo /> }] }],
+  sonner: [
+    { title: "Default", description: "A basic toast with a description.", demos: [{ node: <SonnerDemo /> }] },
+    { title: "Variants", description: "Success, info, warning, error, action, and promise toasts.", demos: [{ node: <SonnerVariantsDemo /> }] },
+  ],
 
   table: [
     {
