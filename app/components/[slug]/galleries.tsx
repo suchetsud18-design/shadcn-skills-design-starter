@@ -126,6 +126,10 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
@@ -1888,7 +1892,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   "dropdown-menu": [
     {
-      title: "Example",
+      title: "Basic",
       demos: [
         {
           node: (
@@ -1908,11 +1912,49 @@ export const galleries: Record<string, Gallery[]> = {
         },
       ],
     },
+    {
+      title: "Submenu & shortcuts",
+      demos: [
+        {
+          node: (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">Open menu</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-52">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  Profile
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Settings
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Email</DropdownMenuItem>
+                    <DropdownMenuItem>Message</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  Log out
+                  <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ),
+        },
+      ],
+    },
   ],
 
   "hover-card": [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -2042,7 +2084,7 @@ export const galleries: Record<string, Gallery[]> = {
 
   popover: [
     {
-      title: "Example",
+      title: "Default",
       demos: [
         {
           node: (
@@ -2054,6 +2096,39 @@ export const galleries: Record<string, Gallery[]> = {
                 <p className="font-medium">Dimensions</p>
                 <p className="text-muted-foreground">Set the dimensions for the layer.</p>
               </PopoverContent>
+            </Popover>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Align",
+      description: "Align the content to the trigger with the align prop.",
+      demos: [
+        {
+          label: "start",
+          node: (
+            <Popover>
+              <PopoverTrigger asChild><Button variant="outline">Start</Button></PopoverTrigger>
+              <PopoverContent align="start" className="w-48 text-sm">Aligned to start.</PopoverContent>
+            </Popover>
+          ),
+        },
+        {
+          label: "center",
+          node: (
+            <Popover>
+              <PopoverTrigger asChild><Button variant="outline">Center</Button></PopoverTrigger>
+              <PopoverContent align="center" className="w-48 text-sm">Aligned to center.</PopoverContent>
+            </Popover>
+          ),
+        },
+        {
+          label: "end",
+          node: (
+            <Popover>
+              <PopoverTrigger asChild><Button variant="outline">End</Button></PopoverTrigger>
+              <PopoverContent align="end" className="w-48 text-sm">Aligned to end.</PopoverContent>
             </Popover>
           ),
         },
