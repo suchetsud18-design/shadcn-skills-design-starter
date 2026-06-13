@@ -168,9 +168,16 @@ export default async function ComponentDocPage({
         </div>
       </header>
 
-      <section className="space-y-3">
+      <section className="space-y-4">
+        <SectionHeading title="Installation" description="Add the component with the shadcn/ui CLI." />
+        <CodeBlock>{installCmd(slug, meta)}</CodeBlock>
+        {meta?.importCode ? <CodeBlock>{meta.importCode}</CodeBlock> : null}
+      </section>
+
+      <section className="space-y-4">
+        <SectionHeading title="Usage" description="Compose the primitives as shown below." />
         <div className="flex items-center justify-between gap-4">
-          <h2 className="text-sm font-medium text-muted-foreground">Preview</h2>
+          <span className="text-sm font-medium text-muted-foreground">Preview</span>
           <code className="rounded bg-muted px-2 py-1 font-mono text-xs text-muted-foreground">
             @/components/ui/{slug}
           </code>
@@ -178,34 +185,40 @@ export default async function ComponentDocPage({
         <div className="flex min-h-[240px] items-center justify-center rounded-lg border bg-card p-10">
           {demo ?? <span className="text-sm text-muted-foreground">No preview yet.</span>}
         </div>
+        {meta?.usageCode ? <CodeBlock>{meta.usageCode}</CodeBlock> : null}
       </section>
 
-      {galls?.map((gallery) => (
-        <section key={gallery.title} className="space-y-4">
-          <SectionHeading title={gallery.title} description={gallery.description} />
-          <div className="flex flex-wrap items-end gap-6 rounded-lg border bg-card p-6">
-            {gallery.demos.map((d, i) => (
-              <div key={d.label ?? i} className="flex flex-col items-center gap-2">
-                {d.node}
-                {d.label ? (
-                  <code className="font-mono text-[11px] text-muted-foreground">{d.label}</code>
-                ) : null}
+      {galls?.length ? (
+        <section className="space-y-6">
+          <SectionHeading title="Examples" description="Common variations, matching the shadcn/ui docs." />
+          <div className="space-y-8">
+            {galls.map((gallery) => (
+              <div key={gallery.title} className="space-y-4">
+                <div className="space-y-1">
+                  <h3 className="text-base font-semibold tracking-tight">{gallery.title}</h3>
+                  {gallery.description ? (
+                    <p className="text-sm text-muted-foreground">{gallery.description}</p>
+                  ) : null}
+                </div>
+                <div className="flex flex-wrap items-end gap-6 rounded-lg border bg-card p-6">
+                  {gallery.demos.map((d, i) => (
+                    <div key={d.label ?? i} className="flex flex-col items-center gap-2">
+                      {d.node}
+                      {d.label ? (
+                        <code className="font-mono text-[11px] text-muted-foreground">{d.label}</code>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
         </section>
-      ))}
-
-      <section className="space-y-4">
-        <SectionHeading title="Usage" description="Install with the shadcn/ui CLI, then compose." />
-        <CodeBlock>{`# Install via shadcn/ui CLI\n${installCmd(slug, meta)}`}</CodeBlock>
-        {meta?.importCode ? <CodeBlock>{meta.importCode}</CodeBlock> : null}
-        {meta?.usageCode ? <CodeBlock>{meta.usageCode}</CodeBlock> : null}
-      </section>
+      ) : null}
 
       {meta?.props?.length ? (
         <section className="space-y-4">
-          <SectionHeading title="Props" description="The most-used props for each part." />
+          <SectionHeading title="API Reference" description="The most-used props for each part." />
           <div className="rounded-lg border">
             <PropsTable rows={meta.props} />
           </div>
