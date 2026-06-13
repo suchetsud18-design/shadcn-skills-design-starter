@@ -616,17 +616,20 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "native-select": {
     figmaNode: "1254-65",
-    importCode: "import {\n  NativeSelect,\n  NativeSelectOption,\n} from \"@/components/ui/native-select\"",
+    importCode: "import {\n  NativeSelect,\n  NativeSelectOptGroup,\n  NativeSelectOption,\n} from \"@/components/ui/native-select\"",
     usageCode: "<NativeSelect>\n  <NativeSelectOption value=\"apple\">Apple</NativeSelectOption>\n  <NativeSelectOption value=\"banana\">Banana</NativeSelectOption>\n</NativeSelect>",
     props: [
       { component: "NativeSelect", prop: "disabled", type: "boolean", default: "false", description: "Disable the control." },
+      { component: "NativeSelect", prop: "aria-invalid", type: "boolean", default: "—", description: "Apply invalid styling + a11y state." },
       { component: "NativeSelectOption", prop: "value", type: "string", default: "—", description: "Option value." },
+      { component: "NativeSelectOption", prop: "disabled", type: "boolean", default: "false", description: "Disable the option." },
+      { component: "NativeSelectOptGroup", prop: "label", type: "string", default: "—", description: "Group heading." },
     ],
     tokens: [
       { token: "--input", value: "border-input", usage: "Border", swatch: true },
       { token: "--ring", value: "ring-ring", usage: "Focus ring", swatch: true },
     ],
-    a11yNote: "Styled wrapper over the native <select> — best for long/mobile lists.",
+    a11yNote: "Styled wrapper over the native <select> — best for long/mobile lists; compose with Field for label + error.",
     a11y: [
       { keys: "↑ / ↓", action: "Change option (native)" },
       { keys: "Tab", action: "Move focus" },
@@ -732,11 +735,13 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "select": {
     figmaNode: "73-1986",
-    importCode: "import {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/components/ui/select\"",
+    importCode: "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectSeparator,\n  SelectTrigger,\n  SelectValue,\n} from \"@/components/ui/select\"",
     usageCode: "<Select>\n  <SelectTrigger className=\"w-[180px]\">\n    <SelectValue placeholder=\"Theme\" />\n  </SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"light\">Light</SelectItem>\n    <SelectItem value=\"dark\">Dark</SelectItem>\n  </SelectContent>\n</Select>",
     props: [
       { component: "Select", prop: "value", type: "string", default: "—", description: "Controlled value." },
       { component: "Select", prop: "defaultValue", type: "string", default: "—", description: "Initial value (uncontrolled)." },
+      { component: "SelectTrigger", prop: "aria-invalid", type: "boolean", default: "—", description: "Apply invalid styling + a11y state." },
+      { component: "SelectContent", prop: "position", type: "\"item-aligned\" | \"popper\"", default: "\"item-aligned\"", description: "Dropdown alignment strategy." },
       { component: "SelectItem", prop: "value", type: "string", default: "—", description: "Option value (required)." },
       { component: "SelectItem", prop: "disabled", type: "boolean", default: "false", description: "Disable the option." },
     ],
@@ -822,6 +827,8 @@ export const componentMeta: Record<string, ComponentMeta> = {
       { component: "Slider", prop: "defaultValue", type: "number[]", default: "—", description: "Initial thumb value(s)." },
       { component: "Slider", prop: "max", type: "number", default: "100", description: "Maximum value." },
       { component: "Slider", prop: "step", type: "number", default: "1", description: "Step increment." },
+      { component: "Slider", prop: "orientation", type: "\"horizontal\" | \"vertical\"", default: "\"horizontal\"", description: "Layout direction." },
+      { component: "Slider", prop: "disabled", type: "boolean", default: "false", description: "Disable the slider." },
     ],
     tokens: [
       { token: "--primary", value: "bg-primary", usage: "Range + thumb", swatch: true },

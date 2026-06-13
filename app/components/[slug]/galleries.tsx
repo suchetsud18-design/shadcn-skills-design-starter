@@ -38,7 +38,7 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/in
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 import { Kbd, KbdGroup } from "@/components/ui/kbd"
 import { Label } from "@/components/ui/label"
-import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
+import { NativeSelect, NativeSelectOptGroup, NativeSelectOption } from "@/components/ui/native-select"
 import {
   Pagination,
   PaginationContent,
@@ -49,7 +49,7 @@ import {
 } from "@/components/ui/pagination"
 import { Progress } from "@/components/ui/progress"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Slider } from "@/components/ui/slider"
@@ -789,11 +789,24 @@ export const galleries: Record<string, Gallery[]> = {
 
   slider: [
     {
-      title: "Examples",
-      demos: [
-        { label: "single", node: <Slider defaultValue={[50]} max={100} step={1} className="w-56" /> },
-        { label: "range", node: <Slider defaultValue={[25, 75]} max={100} step={1} className="w-56" /> },
-      ],
+      title: "Default",
+      demos: [{ node: <Slider defaultValue={[33]} max={100} step={1} className="w-64" /> }],
+    },
+    {
+      title: "Range",
+      demos: [{ node: <Slider defaultValue={[25, 75]} max={100} step={1} className="w-64" /> }],
+    },
+    {
+      title: "Multiple thumbs",
+      demos: [{ node: <Slider defaultValue={[20, 50, 80]} max={100} step={1} className="w-64" /> }],
+    },
+    {
+      title: "Vertical",
+      demos: [{ node: <Slider defaultValue={[50]} max={100} step={1} orientation="vertical" className="h-44" /> }],
+    },
+    {
+      title: "Disabled",
+      demos: [{ node: <Slider defaultValue={[50]} max={100} step={1} disabled className="w-64" /> }],
     },
   ],
 
@@ -1012,23 +1025,69 @@ export const galleries: Record<string, Gallery[]> = {
 
   "native-select": [
     {
-      title: "States",
+      title: "Default",
       demos: [
         {
-          label: "default",
           node: (
-            <NativeSelect className="w-44">
+            <NativeSelect className="w-44" aria-label="Fruit" defaultValue="apple">
+              <NativeSelectOption value="apple">Apple</NativeSelectOption>
+              <NativeSelectOption value="banana">Banana</NativeSelectOption>
+              <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
+              <NativeSelectOption value="pineapple">Pineapple</NativeSelectOption>
+            </NativeSelect>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Groups",
+      demos: [
+        {
+          node: (
+            <NativeSelect className="w-52" aria-label="Role" defaultValue="frontend">
+              <NativeSelectOptGroup label="Engineering">
+                <NativeSelectOption value="frontend">Frontend</NativeSelectOption>
+                <NativeSelectOption value="backend">Backend</NativeSelectOption>
+                <NativeSelectOption value="devops">DevOps</NativeSelectOption>
+              </NativeSelectOptGroup>
+              <NativeSelectOptGroup label="Business">
+                <NativeSelectOption value="sales">Sales</NativeSelectOption>
+                <NativeSelectOption value="support">Support</NativeSelectOption>
+              </NativeSelectOptGroup>
+            </NativeSelect>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Disabled",
+      demos: [
+        {
+          node: (
+            <NativeSelect className="w-44" aria-label="Fruit" disabled defaultValue="apple">
               <NativeSelectOption value="apple">Apple</NativeSelectOption>
               <NativeSelectOption value="banana">Banana</NativeSelectOption>
             </NativeSelect>
           ),
         },
+      ],
+    },
+    {
+      title: "Invalid",
+      demos: [
         {
-          label: "disabled",
           node: (
-            <NativeSelect className="w-44" disabled>
-              <NativeSelectOption value="apple">Apple</NativeSelectOption>
-            </NativeSelect>
+            <Field data-invalid="true" className="w-52">
+              <FieldLabel htmlFor="g-ns-inv">Fruit</FieldLabel>
+              <NativeSelect id="g-ns-inv" aria-invalid defaultValue="">
+                <NativeSelectOption value="" disabled>
+                  Select a fruit
+                </NativeSelectOption>
+                <NativeSelectOption value="apple">Apple</NativeSelectOption>
+                <NativeSelectOption value="banana">Banana</NativeSelectOption>
+              </NativeSelect>
+              <FieldError>Please select a fruit.</FieldError>
+            </Field>
           ),
         },
       ],
@@ -1037,29 +1096,102 @@ export const galleries: Record<string, Gallery[]> = {
 
   select: [
     {
-      title: "States",
+      title: "Default",
       demos: [
         {
-          label: "default",
           node: (
             <Select>
-              <SelectTrigger className="w-44"><SelectValue placeholder="Theme" /></SelectTrigger>
+              <SelectTrigger className="w-44"><SelectValue placeholder="Select a theme" /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="light">Light</SelectItem>
                 <SelectItem value="dark">Dark</SelectItem>
+                <SelectItem value="system">System</SelectItem>
               </SelectContent>
             </Select>
           ),
         },
+      ],
+    },
+    {
+      title: "Groups",
+      demos: [
         {
-          label: "disabled",
+          node: (
+            <Select>
+              <SelectTrigger className="w-44"><SelectValue placeholder="Select a fruit" /></SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Fruits</SelectLabel>
+                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectItem value="banana">Banana</SelectItem>
+                </SelectGroup>
+                <SelectSeparator />
+                <SelectGroup>
+                  <SelectLabel>Vegetables</SelectLabel>
+                  <SelectItem value="carrot">Carrot</SelectItem>
+                  <SelectItem value="potato">Potato</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Scrollable",
+      demos: [
+        {
+          node: (
+            <Select>
+              <SelectTrigger className="w-48"><SelectValue placeholder="Select a timezone" /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="est">Eastern (EST)</SelectItem>
+                <SelectItem value="cst">Central (CST)</SelectItem>
+                <SelectItem value="mst">Mountain (MST)</SelectItem>
+                <SelectItem value="pst">Pacific (PST)</SelectItem>
+                <SelectItem value="gmt">Greenwich (GMT)</SelectItem>
+                <SelectItem value="cet">Central European (CET)</SelectItem>
+                <SelectItem value="jst">Japan (JST)</SelectItem>
+                <SelectItem value="aest">Australian Eastern (AEST)</SelectItem>
+              </SelectContent>
+            </Select>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Disabled",
+      demos: [
+        {
           node: (
             <Select disabled>
-              <SelectTrigger className="w-44"><SelectValue placeholder="Disabled" /></SelectTrigger>
+              <SelectTrigger className="w-44"><SelectValue placeholder="Select a theme" /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="light">Light</SelectItem>
               </SelectContent>
             </Select>
+          ),
+        },
+      ],
+    },
+    {
+      title: "Invalid",
+      demos: [
+        {
+          node: (
+            <Field data-invalid="true" className="w-48">
+              <FieldLabel htmlFor="g-sel-inv">Theme</FieldLabel>
+              <Select>
+                <SelectTrigger id="g-sel-inv" aria-invalid className="w-full">
+                  <SelectValue placeholder="Select a theme" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">Light</SelectItem>
+                  <SelectItem value="dark">Dark</SelectItem>
+                </SelectContent>
+              </Select>
+              <FieldError>Please select a theme.</FieldError>
+            </Field>
           ),
         },
       ],
