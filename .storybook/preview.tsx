@@ -1,6 +1,8 @@
 import * as React from "react"
 import type { Decorator, Preview } from "@storybook/nextjs-vite"
 
+import { TooltipProvider } from "../components/ui/tooltip"
+
 import { DocsTemplate } from "./DocsTemplate"
 
 // Brand tokens (35 semantic vars, light + dark, Brand + Neutral). Importing here
@@ -36,7 +38,10 @@ const withTheme: Decorator = (Story, context) => {
           padding: isDocs ? "1.5rem" : "2rem",
         }}
       >
-        <Story />
+        {/* Mirrors app/layout.tsx, which wraps the whole app in TooltipProvider. */}
+        <TooltipProvider>
+          <Story />
+        </TooltipProvider>
       </div>
     </div>
   )
