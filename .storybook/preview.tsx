@@ -2,6 +2,7 @@ import * as React from "react"
 import type { Decorator, Preview } from "@storybook/nextjs-vite"
 
 import { TooltipProvider } from "../components/ui/tooltip"
+import { Toaster } from "../components/ui/sonner"
 
 import { DocsTemplate } from "./DocsTemplate"
 
@@ -38,10 +39,11 @@ const withTheme: Decorator = (Story, context) => {
           padding: isDocs ? "1.5rem" : "2rem",
         }}
       >
-        {/* Mirrors app/layout.tsx, which wraps the whole app in TooltipProvider. */}
+        {/* Mirrors app/layout.tsx: global TooltipProvider + Toaster. */}
         <TooltipProvider>
           <Story />
         </TooltipProvider>
+        <Toaster />
       </div>
     </div>
   )
