@@ -21,7 +21,7 @@ const meta = {
     step: { description: "Step increment", control: "number" },
     disabled: { description: "Disables the slider", control: "boolean" },
   },
-  args: { min: 0, max: 100, step: 1 },
+  args: { min: 0, max: 100, step: 1, "aria-label": "Value" },
   render: (args) => <Slider className="w-72" {...args} />,
 } satisfies Meta<typeof Slider>
 

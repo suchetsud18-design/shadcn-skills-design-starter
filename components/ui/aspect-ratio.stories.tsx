@@ -23,7 +23,7 @@ export const Widescreen: Story = {
   name: "16 / 9",
   render: () => (
     <div className="w-72">
-      <AspectRatio ratio={16 / 9} className="flex items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
+      <AspectRatio ratio={16 / 9} className="flex items-center justify-center rounded-md bg-muted text-sm text-foreground">
         16 / 9
       </AspectRatio>
     </div>
@@ -34,7 +34,7 @@ export const Square: Story = {
   name: "1 / 1",
   render: () => (
     <div className="w-40">
-      <AspectRatio ratio={1} className="flex items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
+      <AspectRatio ratio={1} className="flex items-center justify-center rounded-md bg-muted text-sm text-foreground">
         1 / 1
       </AspectRatio>
     </div>
@@ -45,7 +45,7 @@ export const Portrait: Story = {
   name: "3 / 4",
   render: () => (
     <div className="w-40">
-      <AspectRatio ratio={3 / 4} className="flex items-center justify-center rounded-md bg-muted text-sm text-muted-foreground">
+      <AspectRatio ratio={3 / 4} className="flex items-center justify-center rounded-md bg-muted text-sm text-foreground">
         3 / 4
       </AspectRatio>
     </div>

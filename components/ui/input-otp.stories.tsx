@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => (
-    <InputOTP maxLength={6}>
+    <InputOTP maxLength={6} aria-label="One-time password">
       <InputOTPGroup>
         <InputOTPSlot index={0} />
         <InputOTPSlot index={1} />
@@ -45,7 +45,7 @@ export const Default: Story = {
 
 export const DigitsOnly: Story = {
   render: () => (
-    <InputOTP maxLength={6} pattern={"^\\d+$"}>
+    <InputOTP maxLength={6} pattern={"^\\d+$"} aria-label="One-time password (digits only)">
       <InputOTPGroup>
         {[0, 1, 2, 3, 4, 5].map((i) => (
           <InputOTPSlot key={i} index={i} />

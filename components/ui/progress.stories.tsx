@@ -17,7 +17,7 @@ const meta = {
   argTypes: {
     value: { description: "Progress value (0–100)", control: { type: "range", min: 0, max: 100 } },
   },
-  args: { value: 60 },
+  args: { value: 60, "aria-label": "Loading progress" },
   render: (args) => <Progress {...args} className="w-64" />,
 } satisfies Meta<typeof Progress>
 
