@@ -27,8 +27,9 @@ Three things in one repo:
 
 1. **A design-system starter** — every color, spacing, radius, and type value comes from a
    semantic token, never a guess. Two themes (**Brand** + **Neutral**), each with light + dark.
-2. **A live documentation site** — browse all **55 shadcn/ui components** plus design-token
-   foundation pages (colors, typography, spacing, sizing, effects) at `localhost:3000`.
+2. **A live documentation site** — a **landing page** (hero, component showcase, stats) plus
+   **magazine-style** component pages with an **interactive playground**. Browse all **55
+   shadcn/ui components** and design-token foundation pages at `localhost:3000`.
 3. **A Claude Code workspace** — agent skills + `CLAUDE.md` that make any AI agent build UI
    consistent with the system and with Figma, automatically.
 
@@ -37,6 +38,7 @@ Three things in one repo:
 | 🎨 **Two themes** | **Brand** (cream `#faf9f5` + charcoal `#141413` + orange `#d97757`) and **Neutral**, each in light + dark |
 | 🧩 **35 semantic tokens** | full light/dark parity in [`DESIGN.md`](./.claude/skills/shadcn-ui-design/references/DESIGN.md) §2, backed by an extensive Tailwind + Radix reference palette (§3–§12) |
 | 📚 **55 documented components** | every shadcn component from the Figma file — live demos, variants, props, tokens, and a11y notes |
+| 🎮 **Interactive playground** | live prop controls (variant, size, disabled…) with real-time preview + code output, plus do/don't guideline cards |
 | 🤖 **18 Claude Code skills** | the project's `shadcn-ui-design` authority + the `ux-ui-agent-skills` design kit (17 skills) |
 | 🖼️ **Figma → code** | Dev Mode MCP workflow **and** a REST-API color puller — read the node, map to tokens, build |
 | ⚡ **Modern stack** | Next.js 16 (App Router, Turbopack), React 19, Tailwind v4 |
@@ -65,9 +67,10 @@ npm install
 npm run dev
 ```
 
-Open **[http://localhost:3000](http://localhost:3000)**. The home page is the documentation
-site — use the sidebar to explore foundations and components. Toggle **light/dark** and switch
-between the **Brand** and **Neutral** themes from the header controls.
+Open **[http://localhost:3000](http://localhost:3000)**. The home page is a **landing page**
+(hero, component showcase, stats); from there, enter the docs and use the sidebar to explore
+foundations and components. Toggle **light/dark** and switch between the **Brand** and
+**Neutral** themes from the header controls.
 
 > **Requirements:** Node ≥ 18 · npm.
 
@@ -91,8 +94,10 @@ entry, and page automatically.
 ### Components
 
 Browse all **55** at [`/components/<slug>`](http://localhost:3000/components/accordion). Each page
-follows the shadcn docs shape: **Installation → Usage → Examples**, then this project's extras —
-**API Reference, Design Tokens, Accessibility**, plus deep links to Figma and shadcn/ui.
+uses a **magazine layout** — a full-width hero preview, an **interactive playground** (live prop
+controls + code output), **do/don't** guideline cards, and **accessibility** pull-quote callouts —
+over the shadcn docs shape (**Installation → Usage → Examples**) plus this project's extras
+(**API Reference, Design Tokens, Accessibility**) and deep links to Figma and shadcn/ui.
 
 <details>
 <summary><b>All 55 components</b></summary>
@@ -210,6 +215,9 @@ Add a component once and the whole site picks it up:
 lib/docs.ts                       # registry: slug, title, description (drives routes + sidebar)
 app/components/[slug]/demos.tsx   # the main Preview per component
 app/components/[slug]/galleries.tsx  # the Examples (variants) per component
+app/components/[slug]/playgrounds.tsx  # interactive playground renderers
+lib/playground-config.ts          # playground prop controls per component
+lib/dos-and-donts.ts              # do/don't guideline cards per component
 scripts/gen-meta.mjs   ──▶  lib/component-meta.ts   # Props / Tokens / a11y / usage
 ```
 
