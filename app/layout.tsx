@@ -40,7 +40,7 @@ export default function RootLayout({
             <SidebarProvider>
               <AppSidebar />
               <div className="flex flex-1 flex-col overflow-hidden">
-                <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-muted/40 px-6">
+                <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b border-border/50 bg-background/80 px-6 backdrop-blur-sm">
                   <SidebarTrigger />
                   <span className="text-sm font-medium text-muted-foreground">
                     Component Documentation
@@ -49,8 +49,8 @@ export default function RootLayout({
                     <ThemeControls />
                   </div>
                 </header>
-                <main className="flex-1 overflow-auto bg-background p-6 lg:p-10">
-                  <div className="mx-auto max-w-4xl">
+                <main className="flex-1 overflow-auto bg-background p-8 lg:p-12">
+                  <div className="mx-auto max-w-5xl">
                     {children}
                   </div>
                 </main>

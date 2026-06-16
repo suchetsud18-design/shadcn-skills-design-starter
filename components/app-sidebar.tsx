@@ -24,12 +24,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar variant="inset" {...props}>
-      <SidebarHeader className="border-b px-4 py-3">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
+      <SidebarHeader className="border-b px-4 py-4">
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <Book className="size-4" />
           </div>
-          <span className="font-semibold">Docs Design</span>
+          <span className="text-lg font-semibold tracking-tight">Docs Design</span>
         </Link>
       </SidebarHeader>
 
