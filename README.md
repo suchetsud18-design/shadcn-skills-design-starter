@@ -114,6 +114,23 @@ toggle-group · tooltip
 
 ---
 
+## 📖 Storybook
+
+Every component is also documented in **Storybook** — CSF stories for each **variant** and
+**state**, interactive **controls** (`argTypes`), **autodocs** pages, and the **a11y addon**.
+A **Palette** (Brand/Neutral) and **Mode** (light/dark) toolbar previews all four theme combos.
+
+**▶ Live: [suchetsud18-design.github.io/shadcn-skills-design-starter](https://suchetsud18-design.github.io/shadcn-skills-design-starter/)**
+— auto-deployed to GitHub Pages on every push to `main`
+(see [`.github/workflows/deploy-storybook.yml`](./.github/workflows/deploy-storybook.yml)).
+
+```bash
+npm run storybook         # run locally at http://localhost:6006
+npm run build-storybook   # static build → storybook-static/
+```
+
+---
+
 ## 🎨 Design system & tokens
 
 The **35 semantic tokens** are the source of truth. They live in **two synced places** —
@@ -234,6 +251,8 @@ scripts/gen-meta.mjs   ──▶  lib/component-meta.ts   # Props / Tokens / a11
 | `npm run build` | Production build |
 | `npm run start` | Run the production build |
 | `npm run lint` | Lint with ESLint |
+| `npm run storybook` | Run Storybook locally at `localhost:6006` |
+| `npm run build-storybook` | Build the static Storybook → `storybook-static/` |
 | `npm run figma:pull -- <nodeId>` | Pull Figma colors → map to this project's tokens |
 | `node figma-rest-api/figma-pull.mjs --file <fileKey> <nodeId>` | Upstream puller (clone it yourself — git-ignored) |
 | `node scripts/gen-meta.mjs` | Regenerate `lib/component-meta.ts` |
