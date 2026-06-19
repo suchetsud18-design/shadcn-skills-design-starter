@@ -43,7 +43,7 @@ starting point.
 | Everything centered | No tension, no hierarchy | Use asymmetry and a real grid; center sparingly and deliberately |
 | Three identical feature cards, equal weight | Flat, boring, no focal point | Break symmetry — one hero item, bento sizing, editorial captions |
 | Cheap meta-labels ("SECTION 01", "FEATURE") | Filler that says nothing | Real, specific microcopy or none at all |
-| Invisible/low-contrast button text | Looks broken, fails a11y | Solid contrast, deliberate button hierarchy (primary = charcoal on orange, 6.2:1) |
+| Invisible/low-contrast button text | Looks broken, fails a11y | Solid contrast, deliberate button hierarchy (primary = charcoal on orange, 5.9:1) |
 | Generic drop shadow on every box | Muddy, dated depth | Restrained, layered elevation (`DESIGN.md` §14); most things are flat |
 | Pure black `#000` on pure white `#fff` | Harsh, amateur | Use the semantic tokens — `bg-background` / `text-foreground` are warm off-black/off-white by design |
 | Rainbow of accent colors | No discipline | `bg-primary` carries action; one accent max; neutrals carry the weight |

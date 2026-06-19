@@ -92,7 +92,7 @@ Core rules (full detail in `SKILL.md`):
 - **Add components via the CLI** (`npx shadcn@latest add …`) — don't hand-write or fork `components/ui/*`.
 - **Pair surface/foreground** (on `bg-card` → `text-card-foreground`).
 - **Keep a11y** — `focus-visible` rings, `aria-*`, `Label htmlFor`. (Primary uses charcoal text on
-  orange for 6.2:1 contrast.)
+  orange for 5.9:1 contrast.)
 
 ## Tokens
 

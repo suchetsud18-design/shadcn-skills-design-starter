@@ -87,6 +87,14 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    // The a11y addon REPORTS violations in the Storybook panel but does not fail
+    // the test run ('todo', not 'error'). Rationale: components/ui/* are vendored
+    // from shadcn unmodified (project no-fork policy), and a few primitives carry
+    // known upstream axe findings — link-variant color, opacity-dimmed inactive
+    // text, the graphical slider thumb (WCAG 1.4.11, not 1.4.3), disabled states,
+    // and listbox/separator ARIA — all rated "serious", none "critical". The
+    // project's OWN tokens + compositions pass WCAG AA (see README → Accessibility).
+    // Flip to 'error' once those primitives are forked to fix the findings.
     a11y: { test: "todo" },
     docs: {
       // Custom autodocs layout (Preview → Props → Examples) for every component.

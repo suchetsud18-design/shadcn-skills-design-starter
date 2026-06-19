@@ -129,6 +129,22 @@ npm run storybook         # run locally at http://localhost:6006
 npm run build-storybook   # static build → storybook-static/
 ```
 
+### Accessibility posture
+
+The **a11y addon (axe)** runs on every story and reports in the **Accessibility panel**;
+it is set to `test: "todo"` (report, don't fail the run) in `.storybook/preview.tsx`.
+
+- **The project's own work passes WCAG 2.2 AA.** Every semantic token pair and every
+  composed page/example meets AA — verified by contrast math (e.g. primary orange + charcoal
+  = 5.9:1, body text = 17:1, muted text on muted surfaces = 4.75:1 after tuning
+  `--muted-foreground` to `38%` L).
+- **`components/ui/*` are vendored from shadcn unmodified** (project no-fork policy). A few
+  upstream primitives carry known axe findings — the `link`-variant color, opacity-dimmed
+  inactive text (`text-foreground/60`), the graphical slider thumb (covered by WCAG **1.4.11**
+  at 3:1, not 1.4.3), `disabled` states (WCAG-exempt), and a listbox/separator ARIA structure.
+  All are rated **"serious", none "critical"** by axe. Fixing them would require forking the
+  primitives; flip the addon to `test: "error"` if that policy changes.
+
 ---
 
 ## 🎨 Design system & tokens

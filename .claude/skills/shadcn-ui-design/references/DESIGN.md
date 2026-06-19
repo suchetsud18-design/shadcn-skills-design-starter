@@ -44,11 +44,11 @@
   --popover: hsl(48 40% 99%);  /* warm white */
   --popover-foreground: hsl(60 3% 8%);  /* charcoal */
   --primary: hsl(15 63% 60%);  /* orange #d97757 */
-  --primary-foreground: hsl(60 3% 8%);  /* charcoal (a11y 6.2:1) */
+  --primary-foreground: hsl(60 3% 8%);  /* charcoal (a11y 5.9:1) */
   --secondary: hsl(50 21% 89%);  /* light gray #e8e6dc */
   --secondary-foreground: hsl(60 3% 8%);  /* charcoal */
   --muted: hsl(50 21% 89%);  /* light gray #e8e6dc */
-  --muted-foreground: hsl(48 6% 40%);  /* warm gray */
+  --muted-foreground: hsl(48 6% 38%);  /* warm gray — 38% L for AA 4.5:1 on muted surfaces */
   --accent: hsl(50 21% 89%);  /* light gray #e8e6dc */
   --accent-foreground: hsl(60 3% 8%);  /* charcoal */
   --destructive: hsl(0 72% 51%);  /* red/600 */
@@ -125,11 +125,11 @@
 | `--popover` | hsl(48 40% 99%) | hsl(60 3% 11%) | warm white | charcoal raised |
 | `--popover-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
 | `--primary` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange #d97757 | orange #d97757 |
-| `--primary-foreground` | hsl(60 3% 8%) | hsl(60 3% 8%) | charcoal (a11y 6.2:1) | charcoal |
+| `--primary-foreground` | hsl(60 3% 8%) | hsl(60 3% 8%) | charcoal (a11y 5.9:1) | charcoal |
 | `--secondary` | hsl(50 21% 89%) | hsl(54 4% 16%) | light gray #e8e6dc | charcoal/200 |
 | `--secondary-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
 | `--muted` | hsl(50 21% 89%) | hsl(54 4% 16%) | light gray #e8e6dc | charcoal/200 |
-| `--muted-foreground` | hsl(48 6% 40%) | hsl(49 7% 67%) | warm gray | mid gray #b0aea5 |
+| `--muted-foreground` | hsl(48 6% 38%) | hsl(49 7% 67%) | warm gray | mid gray #b0aea5 |
 | `--accent` | hsl(50 21% 89%) | hsl(54 4% 19%) | light gray #e8e6dc | charcoal/300 |
 | `--accent-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
 | `--destructive` | hsl(0 72% 51%) | hsl(0 63% 40%) | red/600 | red/800 |
