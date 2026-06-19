@@ -46,6 +46,9 @@ next-env.d.ts
 # external Figma tool — clone it yourself: git clone https://github.com/plugin87/figma-rest-api
 /figma-rest-api
 
+# Figma Make tooling cache (local-only, no committed contents)
+/.figma
+
 # storybook build output
 /storybook-static
 
