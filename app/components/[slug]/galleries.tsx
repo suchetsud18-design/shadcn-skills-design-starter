@@ -1052,7 +1052,7 @@ export const galleries: Record<string, Gallery[]> = {
       demos: [
         {
           node: (
-            <InputOTP maxLength={6} defaultValue="123">
+            <InputOTP maxLength={6}>
               <InputOTPGroup>
                 <InputOTPSlot index={0} aria-invalid />
                 <InputOTPSlot index={1} aria-invalid />
