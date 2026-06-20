@@ -1,6 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -30,10 +38,12 @@ export const Default: Story = {
       </PopoverTrigger>
       <PopoverContent className="w-72">
         <div className="grid gap-3">
-          <div className="space-y-1">
-            <p className="text-sm font-medium">Dimensions</p>
-            <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
-          </div>
+          <PopoverHeader className="space-y-1">
+            <PopoverTitle className="text-sm font-medium">Dimensions</PopoverTitle>
+            <PopoverDescription className="text-sm text-muted-foreground">
+              Set the dimensions for the layer.
+            </PopoverDescription>
+          </PopoverHeader>
           <div className="grid grid-cols-3 items-center gap-2">
             <Label htmlFor="width">Width</Label>
             <Input id="width" defaultValue="100%" className="col-span-2 h-8" />
@@ -42,4 +52,9 @@ export const Default: Story = {
       </PopoverContent>
     </Popover>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Open popover" }))
+    await expect(await within(document.body).findByText("Dimensions")).toBeInTheDocument()
+  },
 }

@@ -1,9 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -44,12 +47,24 @@ function SideSheet({ side }: { side: "top" | "right" | "bottom" | "left" }) {
           <SheetTitle className="capitalize">{side} sheet</SheetTitle>
           <SheetDescription>Enters from the {side} edge.</SheetDescription>
         </SheetHeader>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button variant="outline">Close</Button>
+          </SheetClose>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   )
 }
 
-export const Default: Story = { render: () => <SideSheet side="right" /> }
+export const Default: Story = {
+  render: () => <SideSheet side="right" />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "right" }))
+    await expect(await within(document.body).findByText("right sheet")).toBeInTheDocument()
+  },
+}
 
 export const Sides: Story = {
   render: () => (

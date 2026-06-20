@@ -5,7 +5,11 @@ import {
   ItemActions,
   ItemContent,
   ItemDescription,
+  ItemFooter,
+  ItemGroup,
+  ItemHeader,
   ItemMedia,
+  ItemSeparator,
   ItemTitle,
 } from "@/components/ui/item"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -55,3 +59,35 @@ export const Default: Story = {
 
 export const Outline: Story = { args: { variant: "outline" }, render: Default.render }
 export const Muted: Story = { args: { variant: "muted" }, render: Default.render }
+
+export const Grouped: Story = {
+  render: () => (
+    <ItemGroup className="w-80">
+      <Item>
+        <ItemHeader>People</ItemHeader>
+        <ItemContent>
+          <ItemTitle>Alice</ItemTitle>
+          <ItemDescription>Owner</ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button size="sm" variant="outline">
+            Manage
+          </Button>
+        </ItemActions>
+        <ItemFooter>Joined 2024</ItemFooter>
+      </Item>
+      <ItemSeparator />
+      <Item>
+        <ItemMedia>
+          <Avatar>
+            <AvatarFallback>BO</AvatarFallback>
+          </Avatar>
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>Bob</ItemTitle>
+          <ItemDescription>Editor</ItemDescription>
+        </ItemContent>
+      </Item>
+    </ItemGroup>
+  ),
+}

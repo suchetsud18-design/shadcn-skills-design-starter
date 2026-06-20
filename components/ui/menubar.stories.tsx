@@ -1,12 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import * as React from "react"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   Menubar,
+  MenubarCheckboxItem,
   MenubarContent,
+  MenubarGroup,
   MenubarItem,
+  MenubarLabel,
   MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
   MenubarSeparator,
   MenubarShortcut,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
   MenubarTrigger,
 } from "@/components/ui/menubar"
 
@@ -53,4 +63,57 @@ export const Default: Story = {
       </MenubarMenu>
     </Menubar>
   ),
+}
+
+// Exercises group, label, checkbox, radio group, and a submenu — and opens the
+// menu (plus the submenu) so the portalled content actually mounts.
+export const Rich: Story = {
+  render: function RichMenubar() {
+    const [showBookmarks, setShowBookmarks] = React.useState(true)
+    const [profile, setProfile] = React.useState("benoit")
+    return (
+      <Menubar>
+        <MenubarMenu>
+          <MenubarTrigger>View</MenubarTrigger>
+          <MenubarContent>
+            <MenubarLabel>Appearance</MenubarLabel>
+            <MenubarGroup>
+              <MenubarCheckboxItem
+                checked={showBookmarks}
+                onCheckedChange={setShowBookmarks}
+              >
+                Show Bookmarks Bar
+              </MenubarCheckboxItem>
+              <MenubarItem disabled>Reload</MenubarItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarSub>
+              <MenubarSubTrigger>Share</MenubarSubTrigger>
+              <MenubarSubContent>
+                <MenubarItem>Email Link</MenubarItem>
+                <MenubarItem>Messages</MenubarItem>
+              </MenubarSubContent>
+            </MenubarSub>
+            <MenubarSeparator />
+            <MenubarLabel>Profiles</MenubarLabel>
+            <MenubarRadioGroup value={profile} onValueChange={setProfile}>
+              <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
+              <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
+            </MenubarRadioGroup>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("menuitem", { name: "View" }))
+
+    const body = within(document.body)
+    const subTrigger = await body.findByText("Share")
+    await expect(subTrigger).toBeInTheDocument()
+
+    await userEvent.hover(subTrigger)
+    await expect(await body.findByText("Email Link")).toBeInTheDocument()
+  },
 }

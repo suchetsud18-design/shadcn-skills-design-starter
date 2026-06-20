@@ -37,3 +37,13 @@ export const Range: Story = {
 export const Multiple: Story = {
   render: () => <Calendar mode="multiple" className="rounded-md border" />,
 }
+
+export const DropdownCaption: Story = {
+  render: () => (
+    <Calendar
+      mode="single"
+      captionLayout="dropdown"
+      className="rounded-md border"
+    />
+  ),
+}

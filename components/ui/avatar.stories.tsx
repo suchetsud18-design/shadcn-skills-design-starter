@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  Avatar,
+  AvatarBadge,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  AvatarImage,
+} from "@/components/ui/avatar"
 
 const meta = {
   title: "UI/Avatar",
@@ -37,14 +44,25 @@ export const Fallback: Story = {
   ),
 }
 
+export const WithBadge: Story = {
+  render: () => (
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+      <AvatarBadge />
+    </Avatar>
+  ),
+}
+
 export const Group: Story = {
   render: () => (
-    <div className="flex -space-x-2">
+    <AvatarGroup>
       {["A", "B", "C"].map((c) => (
-        <Avatar key={c} className="ring-2 ring-background">
+        <Avatar key={c}>
           <AvatarFallback>{c}</AvatarFallback>
         </Avatar>
       ))}
-    </div>
+      <AvatarGroupCount>+3</AvatarGroupCount>
+    </AvatarGroup>
   ),
 }

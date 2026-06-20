@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   Drawer,
@@ -56,4 +57,9 @@ export const Default: Story = {
       </DrawerContent>
     </Drawer>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Open drawer" }))
+    await expect(await within(document.body).findByText("Move goal")).toBeInTheDocument()
+  },
 }

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { Search } from "lucide-react"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   InputGroup,
@@ -38,6 +39,15 @@ export const Icon: Story = {
       <InputGroupInput placeholder="Search…" />
     </InputGroup>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    // Clicking a non-button addon focuses the input.
+    const addon = canvasElement.querySelector<HTMLElement>(
+      '[data-slot="input-group-addon"]'
+    )!
+    await userEvent.click(addon)
+    await expect(canvas.getByPlaceholderText("Search…")).toHaveFocus()
+  },
 }
 
 export const Text: Story = {
@@ -63,6 +73,12 @@ export const Button: Story = {
       </InputGroupAddon>
     </InputGroup>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    // Clicking a button inside the addon must NOT steal focus to the input.
+    await userEvent.click(canvas.getByRole("button", { name: "Search" }))
+    await expect(canvas.getByPlaceholderText("Search…")).not.toHaveFocus()
+  },
 }
 
 export const Spinner_: Story = {

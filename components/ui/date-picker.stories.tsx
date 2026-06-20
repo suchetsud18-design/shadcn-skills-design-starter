@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   DatePickerDateTimeDemo,
@@ -26,8 +27,33 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Basic: Story = { render: () => <DatePickerDemo /> }
-export const DateRange: Story = { render: () => <DatePickerRangeDemo /> }
-export const DateOfBirth: Story = { render: () => <DatePickerDobDemo /> }
-export const WithInput: Story = { render: () => <DatePickerInputDemo /> }
-export const DateAndTime: Story = { render: () => <DatePickerDateTimeDemo /> }
+// Open the popover so the calendar mounts.
+function openCalendar(triggerName: RegExp | string) {
+  return async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: triggerName }))
+    const grids = await within(document.body).findAllByRole("grid")
+    await expect(grids.length).toBeGreaterThan(0)
+  }
+}
+
+export const Basic: Story = {
+  render: () => <DatePickerDemo />,
+  play: openCalendar("Pick a date"),
+}
+export const DateRange: Story = {
+  render: () => <DatePickerRangeDemo />,
+  play: openCalendar("Pick a date range"),
+}
+export const DateOfBirth: Story = {
+  render: () => <DatePickerDobDemo />,
+  play: openCalendar("Date of birth"),
+}
+export const WithInput: Story = {
+  render: () => <DatePickerInputDemo />,
+  play: openCalendar("Select date"),
+}
+export const DateAndTime: Story = {
+  render: () => <DatePickerDateTimeDemo />,
+  play: openCalendar("Date"),
+}
