@@ -20,6 +20,10 @@ const meta = {
     },
   },
   args: { maxLength: 6, children: null },
+  argTypes: {
+    maxLength: { description: "Number of slots / characters", control: "number" },
+    disabled: { description: "Disable the input", control: "boolean" },
+  },
 } satisfies Meta<typeof InputOTP>
 
 export default meta

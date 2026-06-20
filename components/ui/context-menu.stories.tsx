@@ -17,6 +17,9 @@ const meta = {
     layout: "centered",
     docs: { description: { component: "A menu triggered by right-clicking (or long-press)." } },
   },
+  argTypes: {
+    modal: { description: "Trap focus and block outside interaction while open", control: "boolean" },
+  },
 } satisfies Meta<typeof ContextMenu>
 
 export default meta

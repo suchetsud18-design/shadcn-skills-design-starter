@@ -14,6 +14,9 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    ratio: { description: "Width-to-height ratio (e.g. 16/9)", control: "number" },
+  },
 } satisfies Meta<typeof AspectRatio>
 
 export default meta

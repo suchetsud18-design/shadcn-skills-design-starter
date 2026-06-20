@@ -24,6 +24,11 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    direction: { description: "Edge the drawer slides from", control: "inline-radio", options: ["top", "bottom", "left", "right"] },
+    modal: { description: "Block interaction with the page behind", control: "boolean" },
+    dismissible: { description: "Allow closing by dragging or clicking outside", control: "boolean" },
+  },
 } satisfies Meta<typeof Drawer>
 
 export default meta

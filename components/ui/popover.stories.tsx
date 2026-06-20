@@ -13,6 +13,10 @@ const meta = {
     layout: "centered",
     docs: { description: { component: "Displays rich content in a portal, anchored to a trigger." } },
   },
+  argTypes: {
+    modal: { description: "Trap focus and block outside interaction while open", control: "boolean" },
+    defaultOpen: { description: "Open on first render (uncontrolled)", control: "boolean" },
+  },
 } satisfies Meta<typeof Popover>
 
 export default meta

@@ -22,6 +22,10 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    modal: { description: "Trap focus and block outside interaction while open", control: "boolean" },
+    defaultOpen: { description: "Open on first render (uncontrolled)", control: "boolean" },
+  },
 } satisfies Meta<typeof Sheet>
 
 export default meta

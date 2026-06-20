@@ -15,6 +15,9 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    type: { description: "When scrollbars are visible", control: "select", options: ["auto", "always", "scroll", "hover"] },
+  },
 } satisfies Meta<typeof ScrollArea>
 
 export default meta

@@ -21,6 +21,10 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    orientation: { description: "Layout direction", control: "inline-radio", options: ["horizontal", "vertical"] },
+    delayDuration: { description: "Delay (ms) before opening a menu on hover", control: "number" },
+  },
 } satisfies Meta<typeof NavigationMenu>
 
 export default meta

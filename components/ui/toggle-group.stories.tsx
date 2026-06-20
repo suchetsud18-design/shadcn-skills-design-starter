@@ -17,6 +17,12 @@ const meta = {
     },
   },
   args: { type: "single" },
+  argTypes: {
+    type: { description: "Single or multiple selection", control: "inline-radio", options: ["single", "multiple"] },
+    variant: { description: "Visual style", control: "inline-radio", options: ["default", "outline"] },
+    size: { description: "Control size", control: "inline-radio", options: ["default", "sm", "lg"] },
+    disabled: { description: "Disable all items", control: "boolean" },
+  },
 } satisfies Meta<typeof ToggleGroup>
 
 export default meta

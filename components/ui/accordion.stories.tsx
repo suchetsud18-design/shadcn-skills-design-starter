@@ -20,6 +20,26 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    type: {
+      description: "Whether one or multiple items can be open at once",
+      control: "inline-radio",
+      options: ["single", "multiple"],
+    },
+    collapsible: {
+      description: "When type=\"single\", allow closing the open item",
+      control: "boolean",
+    },
+    orientation: {
+      description: "Layout direction of the items",
+      control: "inline-radio",
+      options: ["vertical", "horizontal"],
+    },
+    disabled: {
+      description: "Disable all items",
+      control: "boolean",
+    },
+  },
   args: { type: "single" },
 } satisfies Meta<typeof Accordion>
 

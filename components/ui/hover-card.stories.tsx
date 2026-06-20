@@ -15,6 +15,10 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    openDelay: { description: "Delay (ms) before opening on hover", control: "number" },
+    closeDelay: { description: "Delay (ms) before closing on leave", control: "number" },
+  },
 } satisfies Meta<typeof HoverCard>
 
 export default meta

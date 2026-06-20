@@ -23,6 +23,10 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    loop: { description: "Wrap keyboard focus at the list edges", control: "boolean" },
+    shouldFilter: { description: "Filter items as the user types", control: "boolean" },
+  },
 } satisfies Meta<typeof Command>
 
 export default meta

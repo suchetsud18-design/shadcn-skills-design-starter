@@ -22,6 +22,9 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    loop: { description: "Wrap keyboard focus at the menu edges", control: "boolean" },
+  },
 } satisfies Meta<typeof Menubar>
 
 export default meta

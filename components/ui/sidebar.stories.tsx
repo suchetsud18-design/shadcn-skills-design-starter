@@ -28,6 +28,11 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    side: { description: "Edge the sidebar is anchored to", control: "inline-radio", options: ["left", "right"] },
+    variant: { description: "Visual treatment", control: "inline-radio", options: ["sidebar", "floating", "inset"] },
+    collapsible: { description: "Collapse behaviour", control: "inline-radio", options: ["offcanvas", "icon", "none"] },
+  },
 } satisfies Meta<typeof Sidebar>
 
 export default meta

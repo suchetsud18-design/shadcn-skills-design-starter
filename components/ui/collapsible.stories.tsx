@@ -16,6 +16,10 @@ const meta = {
     layout: "centered",
     docs: { description: { component: "An interactive component that expands and collapses content." } },
   },
+  argTypes: {
+    defaultOpen: { description: "Expanded on first render (uncontrolled)", control: "boolean" },
+    disabled: { description: "Prevent toggling", control: "boolean" },
+  },
 } satisfies Meta<typeof Collapsible>
 
 export default meta

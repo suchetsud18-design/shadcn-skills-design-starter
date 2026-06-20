@@ -15,6 +15,12 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    mode: { description: "Selection mode", control: "inline-radio", options: ["single", "multiple", "range"] },
+    numberOfMonths: { description: "How many months to show", control: "number" },
+    showOutsideDays: { description: "Render days from adjacent months", control: "boolean" },
+    captionLayout: { description: "Caption / navigation style", control: "select", options: ["label", "dropdown", "dropdown-months", "dropdown-years"] },
+  },
 } satisfies Meta<typeof Calendar>
 
 export default meta

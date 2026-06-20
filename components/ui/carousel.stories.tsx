@@ -17,6 +17,9 @@ const meta = {
     layout: "centered",
     docs: { description: { component: "A carousel with motion and swipe, built on Embla." } },
   },
+  argTypes: {
+    orientation: { description: "Scroll axis", control: "inline-radio", options: ["horizontal", "vertical"] },
+  },
 } satisfies Meta<typeof Carousel>
 
 export default meta

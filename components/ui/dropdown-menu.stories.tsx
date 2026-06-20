@@ -19,6 +19,10 @@ const meta = {
     layout: "centered",
     docs: { description: { component: "A menu of actions or options triggered by a button." } },
   },
+  argTypes: {
+    modal: { description: "Trap focus and block outside interaction while open", control: "boolean" },
+    defaultOpen: { description: "Open on first render (uncontrolled)", control: "boolean" },
+  },
 } satisfies Meta<typeof DropdownMenu>
 
 export default meta

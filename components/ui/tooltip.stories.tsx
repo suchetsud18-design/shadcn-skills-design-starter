@@ -15,6 +15,10 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    delayDuration: { description: "Delay (ms) before showing on hover", control: "number" },
+    disableHoverableContent: { description: "Hide when the pointer moves onto the tooltip", control: "boolean" },
+  },
 } satisfies Meta<typeof Tooltip>
 
 export default meta

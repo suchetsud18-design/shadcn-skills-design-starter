@@ -14,6 +14,11 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    defaultValue: { description: "Tab selected on first render", control: "text" },
+    orientation: { description: "Layout direction", control: "inline-radio", options: ["horizontal", "vertical"] },
+    activationMode: { description: "Activate on focus or on click", control: "inline-radio", options: ["automatic", "manual"] },
+  },
 } satisfies Meta<typeof Tabs>
 
 export default meta

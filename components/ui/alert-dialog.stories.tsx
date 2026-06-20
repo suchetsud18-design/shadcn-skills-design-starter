@@ -26,6 +26,9 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    defaultOpen: { description: "Open on first render (uncontrolled)", control: "boolean" },
+  },
 } satisfies Meta<typeof AlertDialog>
 
 export default meta
