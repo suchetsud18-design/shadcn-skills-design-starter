@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "figma:pull": "node scripts/figma-pull.mjs --file NN6Wp4Hgsug3OKhiQdL27d",
+    "figma-pull": "figma-pull --file NN6Wp4Hgsug3OKhiQdL27d",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
@@ -20,6 +21,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.4.0",
     "embla-carousel-react": "^8.6.0",
+    "figma-rest-api": "^0.1.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^1.17.0",
     "next": "16.2.6",
@@ -35,23 +37,24 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^10.4.4",
-    "@storybook/addon-docs": "^10.4.4",
-    "@storybook/addon-vitest": "^10.4.4",
-    "@storybook/nextjs-vite": "^10.4.4",
+    "@storybook/addon-a11y": "^10.4.6",
+    "@storybook/addon-docs": "^10.4.6",
+    "@storybook/addon-vitest": "^10.4.6",
+    "@storybook/nextjs-vite": "^10.4.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/browser-playwright": "^4.1.8",
+    "@vitest/coverage-v8": "^4.1.8",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
-    "storybook": "^10.4.4",
+    "playwright": "^1.60.0",
+    "storybook": "^10.4.6",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "^8.0.16",
     "vitest": "^4.1.8",
-    "playwright": "^1.60.0",
-    "@vitest/browser-playwright": "^4.1.8",
-    "@vitest/coverage-v8": "^4.1.8"
+    "eslint-plugin-storybook": "10.4.6"
   }
 }
