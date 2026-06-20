@@ -11,6 +11,8 @@ function Slider({
   value,
   min = 0,
   max = 100,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
   ...props
 }: React.ComponentProps<typeof SliderPrimitive.Root>) {
   const _values = React.useMemo(
@@ -53,6 +55,16 @@ function Slider({
         <SliderPrimitive.Thumb
           data-slot="slider-thumb"
           key={index}
+          // Forward the root's accessible name to each thumb (role="slider"),
+          // suffixing the index when there are multiple thumbs (e.g. a range).
+          {...(ariaLabelledby
+            ? { "aria-labelledby": ariaLabelledby }
+            : ariaLabel
+              ? {
+                  "aria-label":
+                    _values.length > 1 ? `${ariaLabel} ${index + 1}` : ariaLabel,
+                }
+              : {})}
           className="block size-4 shrink-0 rounded-full border border-primary bg-white shadow-sm ring-ring/50 transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
         />
       ))}
