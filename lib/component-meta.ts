@@ -115,7 +115,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     props: [
       { component: "AspectRatio", prop: "ratio", type: "number", default: "1", description: "Width-to-height ratio, e.g. 16 / 9." },
     ],
-    a11yNote: "Layout-only wrapper — no interactive behaviour. Give media an alt attribute.",
+    a11yNote: "Layout-only wrapper — it constrains dimensions and consumes no color tokens; styling comes from the child you place inside. Give media an alt attribute.",
   },
   "avatar": {
     figmaNode: "72-2717",
@@ -224,6 +224,14 @@ export const componentMeta: Record<string, ComponentMeta> = {
     figmaNode: "72-2721",
     importCode: "import {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n} from \"@/components/ui/card\"",
     usageCode: "<Card>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n    <CardDescription>Description</CardDescription>\n  </CardHeader>\n  <CardContent>Content</CardContent>\n  <CardFooter>Footer</CardFooter>\n</Card>",
+    props: [
+      { component: "Card", prop: "className", type: "string", default: "—", description: "Surface container; compose the parts below inside it." },
+      { component: "CardHeader", prop: "className", type: "string", default: "—", description: "Top section — holds CardTitle and CardDescription." },
+      { component: "CardTitle", prop: "className", type: "string", default: "—", description: "Accessible heading for the card." },
+      { component: "CardDescription", prop: "className", type: "string", default: "—", description: "Muted supporting text under the title." },
+      { component: "CardContent", prop: "className", type: "string", default: "—", description: "Main body region." },
+      { component: "CardFooter", prop: "className", type: "string", default: "—", description: "Bottom section — typically actions." },
+    ],
     tokens: [
       { token: "--card", value: "bg-card", usage: "Surface", swatch: true },
       { token: "--card-foreground", value: "text-card-foreground", usage: "Text on card", swatch: true },
@@ -578,6 +586,10 @@ export const componentMeta: Record<string, ComponentMeta> = {
     figmaNode: "1196-1097",
     importCode: "import { Kbd, KbdGroup } from \"@/components/ui/kbd\"",
     usageCode: "<KbdGroup>\n  <Kbd>Ctrl</Kbd>\n  <Kbd>K</Kbd>\n</KbdGroup>",
+    props: [
+      { component: "Kbd", prop: "className", type: "string", default: "—", description: "A single keyboard key." },
+      { component: "KbdGroup", prop: "className", type: "string", default: "—", description: "Groups keys into a shortcut (e.g. Ctrl + K)." },
+    ],
     tokens: [
       { token: "--muted", value: "bg-muted", usage: "Key surface", swatch: true },
       { token: "--muted-foreground", value: "text-muted-foreground", usage: "Key text", swatch: true },
@@ -819,6 +831,9 @@ export const componentMeta: Record<string, ComponentMeta> = {
     figmaNode: "73-1989",
     importCode: "import { Skeleton } from \"@/components/ui/skeleton\"",
     usageCode: "<div className=\"space-y-2\">\n  <Skeleton className=\"h-4 w-[250px]\" />\n  <Skeleton className=\"h-4 w-[200px]\" />\n</div>",
+    props: [
+      { component: "Skeleton", prop: "className", type: "string", default: "—", description: "Set the placeholder size and shape (e.g. h-4 w-48, size-12 rounded-full)." },
+    ],
     tokens: [
       { token: "--muted", value: "bg-muted", usage: "Placeholder fill", swatch: true },
       { token: "animate-pulse", value: "—", usage: "Loading animation" },
@@ -865,6 +880,9 @@ export const componentMeta: Record<string, ComponentMeta> = {
     figmaNode: "1196-1174",
     importCode: "import { Spinner } from \"@/components/ui/spinner\"",
     usageCode: "<Spinner />\n<Button disabled><Spinner /> Saving…</Button>",
+    props: [
+      { component: "Spinner", prop: "className", type: "string", default: "—", description: "Size and color via utilities (e.g. size-6 text-primary); extends native <svg> props." },
+    ],
     tokens: [
       { token: "--muted-foreground", value: "text-muted-foreground", usage: "Spinner color", swatch: true },
       { token: "animate-spin", value: "—", usage: "Rotation" },
@@ -896,6 +914,15 @@ export const componentMeta: Record<string, ComponentMeta> = {
     figmaNode: "73-2898",
     importCode: "import {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/components/ui/table\"",
     usageCode: "<Table>\n  <TableHeader>\n    <TableRow><TableHead>Name</TableHead><TableHead>Status</TableHead></TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow><TableCell>Jane</TableCell><TableCell>Active</TableCell></TableRow>\n  </TableBody>\n</Table>",
+    props: [
+      { component: "Table", prop: "className", type: "string", default: "—", description: "The <table> element wrapper." },
+      { component: "TableHeader", prop: "className", type: "string", default: "—", description: "The <thead> region." },
+      { component: "TableBody", prop: "className", type: "string", default: "—", description: "The <tbody> region." },
+      { component: "TableRow", prop: "className", type: "string", default: "—", description: "A <tr> row." },
+      { component: "TableHead", prop: "className", type: "string", default: "—", description: "A header cell (<th>)." },
+      { component: "TableCell", prop: "className", type: "string", default: "—", description: "A body cell (<td>)." },
+      { component: "TableCaption", prop: "className", type: "string", default: "—", description: "Accessible caption describing the table." },
+    ],
     tokens: [
       { token: "--border", value: "border-border", usage: "Row dividers", swatch: true },
       { token: "--muted", value: "bg-muted", usage: "Header / hover", swatch: true },
