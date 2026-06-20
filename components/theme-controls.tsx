@@ -13,12 +13,16 @@ export function ThemeControls() {
   const [mounted, setMounted] = React.useState(false)
   const [neutral, setNeutral] = React.useState(false)
 
-  // Apply the saved palette on mount and avoid hydration mismatch.
+  // Apply the saved palette on mount and avoid hydration mismatch. The class
+  // toggle is the real side effect; defer the state sync out of the synchronous
+  // effect pass so it doesn't trigger a cascading render.
   React.useEffect(() => {
     const saved = localStorage.getItem(PALETTE_KEY) === "neutral"
     document.documentElement.classList.toggle("theme-neutral", saved)
-    setNeutral(saved)
-    setMounted(true)
+    React.startTransition(() => {
+      setNeutral(saved)
+      setMounted(true)
+    })
   }, [])
 
   function togglePalette() {
