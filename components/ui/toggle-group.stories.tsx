@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { Bold, Italic, Underline } from "lucide-react"
 
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
@@ -42,6 +43,14 @@ export const Multiple: Story = {
       </ToggleGroupItem>
     </ToggleGroup>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByRole("button", { name: "Bold" })).toHaveAttribute("aria-pressed", "true")
+    const italic = canvas.getByRole("button", { name: "Italic" })
+    await expect(italic).toHaveAttribute("aria-pressed", "false")
+    await userEvent.click(italic)
+    await expect(italic).toHaveAttribute("aria-pressed", "true")
+  },
 }
 
 export const Single: Story = {

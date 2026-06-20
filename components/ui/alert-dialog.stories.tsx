@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   AlertDialog,
@@ -54,4 +55,11 @@ export const Default: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Delete account" }))
+    const dialog = await within(document.body).findByRole("alertdialog")
+    await within(dialog).findByRole("heading", { name: "Are you absolutely sure?" })
+    await expect(within(dialog).getByRole("button", { name: "Cancel" })).toBeInTheDocument()
+  },
 }

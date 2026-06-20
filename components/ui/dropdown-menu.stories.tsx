@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   DropdownMenu,
@@ -50,4 +51,10 @@ export const Default: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Open menu" }))
+    const profile = await within(document.body).findByRole("menuitem", { name: /Profile/ })
+    await expect(profile).toBeInTheDocument()
+  },
 }

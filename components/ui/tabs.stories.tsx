@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -39,4 +40,10 @@ export const Default: Story = {
       </TabsContent>
     </Tabs>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByText("Make changes to your account here.")).toBeVisible()
+    await userEvent.click(canvas.getByRole("tab", { name: "Password" }))
+    await expect(canvas.getByText("Change your password here.")).toBeVisible()
+  },
 }

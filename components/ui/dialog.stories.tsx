@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   Dialog,
@@ -57,4 +58,13 @@ export const Default: Story = {
       </DialogContent>
     </Dialog>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole("button", { name: "Edit profile" }))
+    const dialog = await within(document.body).findByRole("dialog")
+    await within(dialog).findByRole("heading", { name: "Edit profile" })
+    await expect(
+      within(dialog).getByText(/Make changes to your profile/),
+    ).toBeInTheDocument()
+  },
 }

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 
 import {
   Accordion,
@@ -63,6 +64,16 @@ export const Default: Story = {
       </AccordionItem>
     </Accordion>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const trigger = canvas.getByRole("button", { name: "Is it styled?" })
+    await expect(trigger).toHaveAttribute("aria-expanded", "false")
+    await userEvent.click(trigger)
+    await expect(trigger).toHaveAttribute("aria-expanded", "true")
+    await expect(
+      canvas.getByText("Yes. It comes with default styles that match the system."),
+    ).toBeVisible()
+  },
 }
 
 export const Multiple: Story = {

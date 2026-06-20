@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { expect, userEvent, within } from "storybook/test"
 import { ChevronsUpDown } from "lucide-react"
 
 import {
@@ -42,4 +43,12 @@ export const Default: Story = {
       </CollapsibleContent>
     </Collapsible>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const toggle = canvas.getByRole("button", { name: "Toggle" })
+    await expect(toggle).toHaveAttribute("aria-expanded", "false")
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute("aria-expanded", "true")
+    await expect(canvas.getByText("@radix-ui/primitives")).toBeVisible()
+  },
 }
