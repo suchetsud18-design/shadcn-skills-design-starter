@@ -54,7 +54,7 @@
   --destructive: hsl(0 72% 51%);  /* red/600 */
   --border: hsl(48 16% 84%);  /* warm gray/200 */
   --input: hsl(48 16% 84%);  /* warm gray/200 */
-  --ring: hsl(15 63% 60%);  /* orange */
+  --ring: hsl(15 63% 55%);  /* orange — 55% L for AA 3:1 focus ring on cream */
   --chart-1: hsl(15 63% 60%);  /* orange #d97757 */
   --chart-2: hsl(210 49% 61%);  /* blue #6a9bcc */
   --chart-3: hsl(86 20% 46%);  /* green #788c5d */
@@ -67,7 +67,7 @@
   --sidebar-accent: hsl(50 21% 89%);  /* light gray */
   --sidebar-accent-foreground: hsl(60 3% 8%);  /* charcoal */
   --sidebar-border: hsl(48 16% 84%);  /* warm gray/200 */
-  --sidebar-ring: hsl(15 63% 60%);  /* orange */
+  --sidebar-ring: hsl(15 63% 55%);  /* orange — 55% L for AA 3:1 focus ring on sidebar */
   --background-color: hsl(0 0% 0% / 30%);  /* black/30% */
   --semantic-background: hsl(40 6% 45%);  /* warm stone/500 */
   --semantic-border: hsl(40 6% 60%);  /* warm stone/400 */
@@ -135,7 +135,7 @@
 | `--destructive` | hsl(0 72% 51%) | hsl(0 63% 40%) | red/600 | red/800 |
 | `--border` | hsl(48 16% 84%) | hsl(54 4% 19%) | warm gray/200 | charcoal/300 |
 | `--input` | hsl(48 16% 84%) | hsl(54 4% 19%) | warm gray/200 | charcoal/300 |
-| `--ring` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange | orange |
+| `--ring` | hsl(15 63% 55%) | hsl(15 63% 60%) | orange (light 55% L for AA 3:1) | orange |
 | `--chart-1` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange #d97757 | orange |
 | `--chart-2` | hsl(210 49% 61%) | hsl(210 49% 61%) | blue #6a9bcc | blue |
 | `--chart-3` | hsl(86 20% 46%) | hsl(86 20% 46%) | green #788c5d | green |
@@ -148,7 +148,7 @@
 | `--sidebar-accent` | hsl(50 21% 89%) | hsl(54 4% 16%) | light gray | charcoal/200 |
 | `--sidebar-accent-foreground` | hsl(60 3% 8%) | hsl(48 33% 97%) | charcoal | cream |
 | `--sidebar-border` | hsl(48 16% 84%) | hsl(54 4% 19%) | warm gray/200 | charcoal/300 |
-| `--sidebar-ring` | hsl(15 63% 60%) | hsl(15 63% 60%) | orange | orange |
+| `--sidebar-ring` | hsl(15 63% 55%) | hsl(15 63% 60%) | orange (light 55% L for AA 3:1) | orange |
 | `--background-color` | hsl(0 0% 0% / 30%) | hsl(0 0% 0% / 50%) | black/30% | black/50% |
 | `--semantic-background` | hsl(40 6% 45%) | hsl(40 6% 45%) | warm stone/500 | warm stone/500 |
 | `--semantic-border` | hsl(40 6% 60%) | hsl(40 6% 60%) | warm stone/400 | warm stone/400 |
@@ -247,7 +247,7 @@ Both still respect `.dark`.
   --secondary: hsl(0 0% 96%);  /* neutral/100 */
   --secondary-foreground: hsl(0 0% 4%);
   --muted: hsl(0 0% 96%);
-  --muted-foreground: hsl(0 0% 45%);  /* neutral/500 */
+  --muted-foreground: hsl(0 0% 42%);  /* 42% L for AA 4.5:1 on muted (was neutral/500 45%) */
   --accent: hsl(0 0% 96%);
   --accent-foreground: hsl(0 0% 9%);
   --destructive: hsl(0 72% 51%);  /* red/600 */
