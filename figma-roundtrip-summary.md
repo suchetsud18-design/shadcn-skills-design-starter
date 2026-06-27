@@ -26,12 +26,26 @@
 |---|---|---|---|
 | **pull** (Figma → token) | REST `GET /v1/files/:key/nodes` + `scripts/figma-pull.mjs` | `file_content:read` | ✅ ทำงาน — ดึงสี map เข้า token ด้วย OKLab ΔE |
 | pull ชื่อ variable | REST `GET /v1/files/:key/variables/local` | `file_variables:read` | ⚠️ PAT ปัจจุบันไม่มี scope → bindings โชว์เป็น raw ID |
-| **push** (token → Figma) | **Figma plugin** WCAG Contrast Fix (เขียน Variables จากใน Figma) | — (รันในแอป) | ✅ ทำงาน — ไม่ติด Enterprise |
+| **push** (token → **Variable**) | **Figma plugin** Token Sync (`figma-token-sync/`) — `figma.variables.setValueForMode()` | — (รันในแอป) | ✅ ทำงาน — เขียนค่า token ลง Variable ตรงๆ ไม่ติด Enterprise |
+| push (WCAG fix ระดับ node) | **Figma plugin** WCAG Contrast Fix (แก้ fill ของ text node) | — (รันในแอป) | ✅ ทำงาน — แต่ **ไม่แตะ Variable** (node-level) |
 | push ผ่าน REST (ทดลอง) | `POST /v1/files/:key/variables` + `scripts/figma-push.mjs` | `file_variables:write` | ❌ ยืนยันแล้ว 403 (ไม่มี scope; และ REST write ยัง gate เฉพาะ Enterprise) |
 
-**สรุปการตัดสินใจ:** REST write ของ Variables ถูก gate → จึงใช้ **plugin** เป็นฝั่งเขียนแทน
-`scripts/figma-push.mjs` เก็บไว้เป็นหลักฐานเชิงทดลองว่า REST write ใช้ไม่ได้บนบัญชี/แพลนนี้
+**สรุปการตัดสินใจ:** REST write ของ Variables ถูก gate → ฝั่งเขียนใช้ **plugin** แทน
+`scripts/figma-push.mjs` เก็บไว้เป็นหลักฐานว่า REST write ใช้ไม่ได้บนบัญชี/แพลนนี้
 (รัน `npm run figma:push -- --list` แล้วได้ HTTP 403 "requires the file_variables:read scope")
+
+### push สองตัวต่างกันอย่างไร
+
+- **WCAG Contrast Fix** (มากับ package) = แก้ contrast โดยเขียนสีลง **fill ของ text node** ตรงๆ
+  → ถ้า fill นั้น bind Variable อยู่ จะ **detach** binding ทิ้ง และ**ไม่แก้ค่า token** เลย
+  (รันบน `figma.currentPage` หน้าเดียว — จึง "ทำแค่หน้าที่เปิดอยู่")
+- **Token Sync** (เขียนใหม่ในโปรเจกต์นี้, `figma-token-sync/`) = อ่านค่า token จาก
+  `app/globals.css` แล้วเขียนลง **Figma Variable ที่ชื่อตรงกัน** ผ่าน `setValueForMode()`
+  ครบทุก mode (light/dark) → เป็นฝั่ง write ที่ "โดน Variable" จริงของ round-trip
+  - ค่า token ถูก **bake** ลง `figma-token-sync/code.js` ด้วย `npm run figma:plugin:build`
+    (plugin อ่านไฟล์ในเครื่องไม่ได้ จึงต้องฝังค่าไว้ตอน build) — ปัจจุบัน 35 token (light+dark)
+  - import: Figma desktop → Plugins → Development → Import plugin from manifest →
+    `figma-token-sync/manifest.json` → รัน **Token Sync → Variables**
 
 ## ขั้นตอนที่ทำ (round-trip ครบลูป)
 

@@ -1,0 +1,7 @@
+{
+  "name": "Token Sync → Variables",
+  "id": "create-skill-token-sync",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"]
+}

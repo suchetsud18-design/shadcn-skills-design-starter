@@ -9,6 +9,7 @@
     "lint": "eslint",
     "figma:pull": "node --env-file-if-exists=.env.local scripts/figma-pull.mjs --file NN6Wp4Hgsug3OKhiQdL27d",
     "figma:push": "node --env-file-if-exists=.env.local scripts/figma-push.mjs",
+    "figma:plugin:build": "node scripts/build-figma-plugin.mjs",
     "figma-pull": "figma-pull --file NN6Wp4Hgsug3OKhiQdL27d",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

@@ -52,6 +52,7 @@ next-env.d.ts
 # Figma round-trip practice outputs (figma-pull --out; local-only, regenerate anytime)
 /before.json
 /after.json
+/figma-connection-report.json
 
 # storybook build output
 /storybook-static
