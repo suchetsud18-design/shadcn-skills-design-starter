@@ -49,6 +49,10 @@ next-env.d.ts
 # Figma Make tooling cache (local-only, no committed contents)
 /.figma
 
+# Figma round-trip practice outputs (figma-pull --out; local-only, regenerate anytime)
+/before.json
+/after.json
+
 # storybook build output
 /storybook-static
 
